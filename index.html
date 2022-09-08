@@ -7,13 +7,12 @@
     <title>JSON Designer</title>
 
     <link rel="stylesheet" href="style.css">
+    <script defer type="module" src="main.js"></script>
 
     <!-- Material Design -->
     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-    <script defer type="module" src="main.js"></script>
 </head>
 
 <body>
@@ -29,11 +28,49 @@
         </span>
     </label>
 
-    <button id="copyJSON" class="mdc-button mdc-button--raised mdc-button--leading">
-        <span class="mdc-button__ripple"></span>
-        <i class="material-icons mdc-button__icon" aria-hidden="true">content_copy</i>
-        <span class="mdc-button__label">Copy JSON</span>
-    </button>
+    <div>
+        <p>
+            <button id="copyJSON" class="mdc-button mdc-button--raised mdc-button--leading">
+                <span class="mdc-button__ripple"></span>
+                <i class="material-icons mdc-button__icon" aria-hidden="true">content_copy</i>
+                <span class="mdc-button__label">Copy JSON</span>
+            </button>
+        </p>
+
+        <p>
+        <div class="mdc-select mdc-select-keys mdc-select--filled demo-width-class">
+            <div class="mdc-select__anchor" role="button" aria-haspopup="listbox" aria-expanded="false"
+                aria-labelledby="demo-label demo-selected-text">
+                <span class="mdc-select__ripple"></span>
+                <span id="demo-label" class="mdc-floating-label">Key</span>
+                <span class="mdc-select__selected-text-container">
+                    <span id="demo-selected-text" class="mdc-select__selected-text"></span>
+                </span>
+                <span class="mdc-select__dropdown-icon">
+                    <svg class="mdc-select__dropdown-icon-graphic" viewBox="7 10 10 5" focusable="false">
+                        <polygon class="mdc-select__dropdown-icon-inactive" stroke="none" fill-rule="evenodd"
+                            points="7 10 12 15 17 10">
+                        </polygon>
+                        <polygon class="mdc-select__dropdown-icon-active" stroke="none" fill-rule="evenodd"
+                            points="7 15 12 10 17 15">
+                        </polygon>
+                    </svg>
+                </span>
+                <span class="mdc-line-ripple"></span>
+            </div>
+
+            <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
+                <ul id="dropdownKeys" class="mdc-list" role="listbox" aria-label="Key picker listbox"></ul>
+            </div>
+        </div>
+
+        <button id="deleteKey" class="mdc-button mdc-button--raised mdc-button--leading">
+            <span class="mdc-button__ripple"></span>
+            <i class="material-icons mdc-button__icon" aria-hidden="true">delete</i>
+            <span class="mdc-button__label">Delete Key</span>
+        </button>
+        </p>
+    </div>
 </body>
 
 </html>
