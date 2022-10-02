@@ -23,14 +23,14 @@
                     aria-label="Open navigation menu">menu</button>-->
                 <span class="mdc-top-app-bar__title">JSON Designer</span>
             </section>
-            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-                <!--<button class="material-icons mdc-top-app-bar__action-item mdc-icon-button"
+            <!--<section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+                <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button"
                     aria-label="Favorite">favorite</button>
                 <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button"
                     aria-label="Search">search</button>
                 <button class="material-icons mdc-top-app-bar__action-item mdc-icon-button"
-                    aria-label="Options">more_vert</button>-->
-            </section>
+                    aria-label="Options">more_vert</button>
+            </section>-->
         </div>
     </header>
 
@@ -40,53 +40,53 @@
                 <span class="mdc-notched-outline__leading"></span>
                 <span class="mdc-notched-outline__trailing"></span>
             </span>
-            <span class="mdc-text-field__resizer">
+            <!-- <span class="mdc-text-field__resizer"> -->
                 <textarea id="textarea" class="mdc-text-field__input" aria-label="Label"></textarea>
-            </span>
+            <!-- </span> -->
         </label>
 
         <div>
-            <p>
+            <div class="mb-10">
                 <button id="copyJSON" class="mdc-button mdc-button--raised mdc-button--leading">
                     <span class="mdc-button__ripple"></span>
                     <i class="material-icons mdc-button__icon" aria-hidden="true">content_copy</i>
                     <span class="mdc-button__label">Copy JSON</span>
                 </button>
-            </p>
-
-            <p>
-            <div class="mdc-select mdc-select-keys mdc-select--filled demo-width-class">
-                <div class="mdc-select__anchor" role="button" aria-haspopup="listbox" aria-expanded="false"
-                    aria-labelledby="demo-label demo-selected-text">
-                    <span class="mdc-select__ripple"></span>
-                    <span id="demo-label" class="mdc-floating-label">Key</span>
-                    <span class="mdc-select__selected-text-container">
-                        <span id="demo-selected-text" class="mdc-select__selected-text"></span>
-                    </span>
-                    <span class="mdc-select__dropdown-icon">
-                        <svg class="mdc-select__dropdown-icon-graphic" viewBox="7 10 10 5" focusable="false">
-                            <polygon class="mdc-select__dropdown-icon-inactive" stroke="none" fill-rule="evenodd"
-                                points="7 10 12 15 17 10">
-                            </polygon>
-                            <polygon class="mdc-select__dropdown-icon-active" stroke="none" fill-rule="evenodd"
-                                points="7 15 12 10 17 15">
-                            </polygon>
-                        </svg>
-                    </span>
-                    <span class="mdc-line-ripple"></span>
-                </div>
-
-                <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
-                    <ul id="dropdownKeys" class="mdc-list" role="listbox" aria-label="Key picker listbox"></ul>
-                </div>
             </div>
 
-            <button id="deleteKey" class="mdc-button mdc-button--raised mdc-button--leading">
-                <span class="mdc-button__ripple"></span>
-                <i class="material-icons mdc-button__icon" aria-hidden="true">delete</i>
-                <span class="mdc-button__label">Delete Key</span>
-            </button>
-            </p>
+            <div class="mb-10 ver-align">
+                <div class="mdc-select mdc-select-keys mdc-select--filled demo-width-class">
+                    <div class="mdc-select__anchor" role="button" aria-haspopup="listbox" aria-expanded="false"
+                        aria-labelledby="demo-label demo-selected-text">
+                        <span class="mdc-select__ripple"></span>
+                        <span id="demo-label" class="mdc-floating-label">Key</span>
+                        <span class="mdc-select__selected-text-container">
+                            <span id="demo-selected-text" class="mdc-select__selected-text"></span>
+                        </span>
+                        <span class="mdc-select__dropdown-icon">
+                            <svg class="mdc-select__dropdown-icon-graphic" viewBox="7 10 10 5" focusable="false">
+                                <polygon class="mdc-select__dropdown-icon-inactive" stroke="none" fill-rule="evenodd"
+                                    points="7 10 12 15 17 10">
+                                </polygon>
+                                <polygon class="mdc-select__dropdown-icon-active" stroke="none" fill-rule="evenodd"
+                                    points="7 15 12 10 17 15">
+                                </polygon>
+                            </svg>
+                        </span>
+                        <span class="mdc-line-ripple"></span>
+                    </div>
+
+                    <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
+                        <ul id="dropdownKeys" class="mdc-list" role="listbox" aria-label="Key picker listbox"></ul>
+                    </div>
+                </div>
+
+                <button id="deleteKey" class="ml-5 mdc-button mdc-button--raised mdc-button--leading">
+                    <span class="mdc-button__ripple"></span>
+                    <i class="material-icons mdc-button__icon" aria-hidden="true">delete</i>
+                    <span class="mdc-button__label">Delete Key</span>
+                </button>
+            </div>
         </div>
     </main>
 </body>
