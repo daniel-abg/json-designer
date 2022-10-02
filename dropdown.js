@@ -16,7 +16,7 @@ export function getSelected() {
 /**
  * Fills the key dropdown with <li> elements
  */
- function fillDropdownList() {
+function fillDropdownList() {
     let ul = document.getElementById("dropdownKeys");
     let keys = keyify();
 
@@ -30,7 +30,7 @@ export function getSelected() {
  * @param {*} ul <ul> element which is the key dropdown
  * @param {*} key Path to a key, e.g.: book.author.firstname
  */
- function createLiElement(ul, key) {
+function createLiElement(ul, key) {
     let li;
     let spanRipple;
     let spanText;
@@ -56,7 +56,7 @@ export function getSelected() {
 /**
  * Gets executed when a new key gets selected in the dropdown
  */
- selectKey.listen('MDCSelect:change', () => {
+selectKey.listen('MDCSelect:change', () => {
     console.log(`Selected option at index ${selectKey.selectedIndex} with value "${selectKey.value}"`);
 });
 
@@ -64,7 +64,7 @@ export function getSelected() {
  * Deletes a <li> element in the key dropdown
  * @param {*} key Path to a key, e.g.: book.author.firstname
  */
- export function deleteLiElement(key) {
+export function deleteLiElement(key) {
     selectKey.selectedIndex = -1;
     const li = document.querySelector(`[data-value='${key}']`)
     li.remove();

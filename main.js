@@ -2,8 +2,10 @@ import { getJson, keyify, deleteKey } from './json.js'
 import { deleteLiElement, getSelected } from './dropdown.js';
 
 const MDCTextField = mdc.textField.MDCTextField;
+const MDCTopAppBar = mdc.topAppBar.MDCTopAppBar;
 
 const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
+const topAppBar = new MDCTopAppBar(document.querySelector('.mdc-top-app-bar'));
 
 // EventListeners
 document.querySelector('#copyJSON').addEventListener('click', btnCopyJSON);
