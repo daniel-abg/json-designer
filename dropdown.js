@@ -1,4 +1,4 @@
-import { keyify } from "./json.js";
+import MyJSON from "./json.js";
 
 const MDCSelect = mdc.select.MDCSelect;
 
@@ -18,7 +18,7 @@ export function getSelected() {
  */
 function fillDropdownList() {
     let ul = document.getElementById("dropdownKeys");
-    let keys = keyify();
+    let keys = MyJSON.getAllKeyPaths();
 
     for (const key of keys) {
         createLiElement(ul, key);

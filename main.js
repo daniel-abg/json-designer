@@ -1,4 +1,4 @@
-import { getJson, keyify, deleteKey } from './json.js'
+import MyJSON from './json.js'
 import { deleteLiElement, getSelected } from './dropdown.js';
 
 const MDCTextField = mdc.textField.MDCTextField;
@@ -14,20 +14,20 @@ document.querySelector('#deleteKey').addEventListener('click', btnDeleteKey);
 /**
  * Number of spaces of intendation in the JSON string.
  */
-let space = 2;
+let intendationSpaces = 2;
 
 /**
  * Copies the JSON string into the clipboard of the user.
  */
 function btnCopyJSON() {
-    navigator.clipboard.writeText(getJson(space));
+    navigator.clipboard.writeText(MyJSON.getJson(intendationSpaces));
 }
 
 /**
  * Pastes the JSON string into the textarea.
  */
 function pasteJSON() {
-    textField.value = getJson(space);
+    textField.value = MyJSON.getJson(intendationSpaces);
 }
 pasteJSON();
 
@@ -37,7 +37,7 @@ pasteJSON();
 function btnDeleteKey() {
     let selectedKey = getSelected();
 
-    deleteKey(selectedKey);
+    MyJSON.deleteKey(selectedKey);
     deleteLiElement(selectedKey);
     pasteJSON();
 }
