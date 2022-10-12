@@ -17,6 +17,10 @@ main {
     padding-bottom: 5px !important;
 }
 
+.mdc-menu-surface--fullwidth {
+    width: max-content !important; /* adjust width to the list item's content */
+}
+
 .mdc-text-field {
     margin-top: 25px;
     margin-bottom: 25px;
