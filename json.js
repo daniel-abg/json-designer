@@ -42,24 +42,24 @@ class MyJSON {
     }
 
     /**
-     * Returns the paths of all keys from a JavaScript object using forEach()
+     * Returns the paths of all keys from a JavaScript object
      * @source: https://infinitbility.com/how-to-get-all-keys-from-nested-json-object-in-javascript/
      * @param {*} object JavaScript object that can be nested and contain arrays
-     * @param {*} paths Empty array
-     * @param {*} path Empty string
+     * @param {*} paths All already collected paths
+     * @param {*} path The current location to search for keys
      * @returns The paths of all keys from a JavaScript object 
      */
     getAllKeyPaths = (object = this.#json, paths = [], path = "") => {
-        Object.keys(object).forEach(key => { // get all keys from the object and iterate through them
-            paths.push(path + key); // save the path for the current key
+        Object.keys(object).forEach(key => {
+            paths.push(path + key);
 
-            if (object[key] instanceof Array && object[key] !== null) { // check if the next element is an array
-                this.getAllKeyPaths(object[key][0], paths, path + key + "."); // continue searching for keys recursively at index 0 of the array
-            } else if (typeof object[key] === 'object' && object[key] !== null) { // check if the next element is an object
-                this.getAllKeyPaths(object[key], paths, path + key + "."); // continue searching for keys recursively
+            if (object[key] instanceof Array && object[key] !== null) {
+                this.getAllKeyPaths(object[key][0], paths, path + key + ".");
+            } else if (typeof object[key] === 'object' && object[key] !== null) {
+                this.getAllKeyPaths(object[key], paths, path + key + ".");
             }
         });
-        return paths; // stop recursion if there are no further nested objects/arrays
+        return paths;
     }
 
     /**
@@ -71,9 +71,9 @@ class MyJSON {
         let object = this.#json;
 
         for (let i = 0; i < keys.length - 1; i++) {
-            if (object[keys[i]] instanceof Array && object[keys[i]] !== null) { // check if the next element is an array
-                object = object[keys[i]][0]; // take always the first object of an array
-            } else if (typeof object[keys[i]] === 'object' && object[keys[i]] !== null) { // check if the next element is an object
+            if (object[keys[i]] instanceof Array && object[keys[i]] !== null) {
+                object = object[keys[i]][0];
+            } else if (typeof object[keys[i]] === 'object' && object[keys[i]] !== null) {
                 object = object[keys[i]];
             }
         }
@@ -81,4 +81,4 @@ class MyJSON {
         delete object[keys[keys.length - 1]];
     }
 }
-export default MyJSON = Object.seal(new MyJSON()); // return always the same instance
+export default MyJSON = Object.seal(new MyJSON());

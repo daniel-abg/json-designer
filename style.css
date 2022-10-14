@@ -11,14 +11,13 @@ main {
     padding-right: 25px;
 }
 
-/* MDC select list item */
 .mdc-list-item {
     padding-top: 5px !important;
     padding-bottom: 5px !important;
 }
 
 .mdc-menu-surface--fullwidth {
-    width: max-content !important; /* adjust width to the list item's content */
+    width: max-content !important;
 }
 
 .mdc-text-field {
