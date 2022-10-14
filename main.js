@@ -8,8 +8,8 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 const topAppBar = new MDCTopAppBar(document.querySelector('.mdc-top-app-bar'));
 
 // EventListeners
-document.querySelector('#copyJSON').addEventListener('click', btnCopyJSON);
-document.querySelector('#deleteKey').addEventListener('click', btnDeleteKey);
+document.querySelector('#copyJSON').addEventListener('click', copyJSON);
+document.querySelector('#deleteKey').addEventListener('click', deleteKey);
 
 /**
  * Number of spaces of intendation in the JSON string.
@@ -19,7 +19,7 @@ let intendationSpaces = 2;
 /**
  * Copies the JSON string into the clipboard of the user.
  */
-function btnCopyJSON() {
+function copyJSON() {
     navigator.clipboard.writeText(MyJSON.getJson(intendationSpaces));
 }
 
@@ -34,7 +34,7 @@ pasteJSON();
 /**
  * Deletes a key from JSON and the key dropdown
  */
-function btnDeleteKey() {
+function deleteKey() {
     let selectedKey = getSelected();
 
     MyJSON.deleteKey(selectedKey);

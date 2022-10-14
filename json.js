@@ -8,7 +8,7 @@ class MyJSON {
             "author": {
                 "firstname": "Francis Scott",
                 "lastname": "Fitzgerald",
-                "family": [
+                /*"family": [
                     {
                         "person": "Zelda Sayre",
                         "type": "wife",
@@ -25,7 +25,7 @@ class MyJSON {
                         "type": "daughter",
                         "anotherArray": []
                     }
-                ],
+                ],*/
                 "born": 1896,
                 "died": 1940
             },
