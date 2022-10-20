@@ -1,10 +1,10 @@
 /**
  * This is the central JavaScript object that gets changed by the app.
  */
-class MyJSON {
-    #json = {
+const MyJSONmodule = () => {
+    let json = {
         "book": {
-            "name": "The Great Gatsby",
+            "title": "The Great Gatsby",
             "author": {
                 "firstname": "Francis Scott",
                 "lastname": "Fitzgerald",
@@ -37,8 +37,8 @@ class MyJSON {
      * @param {*} space Adds indentation (white space) to the JSON string to make it easier to read.
      * @returns The JSON string.
      */
-    getJson(space) {
-        return JSON.stringify(this.#json, null, space);
+    function getJson(space) {
+        return JSON.stringify(json, null, space);
     }
 
     /**
@@ -47,16 +47,16 @@ class MyJSON {
      * @param {*} object JavaScript object that can be nested and contain arrays
      * @param {*} paths All already collected paths
      * @param {*} path The current location to search for keys
-     * @returns The paths of all keys from a JavaScript object 
+     * @returns The paths of all keys from a JavaScript object
      */
-    getAllKeyPaths = (object = this.#json, paths = [], path = "") => {
+    const getAllKeyPaths = (object = json, paths = [], path = "") => {
         Object.keys(object).forEach(key => {
             paths.push(path + key);
 
             if (object[key] instanceof Array && object[key] !== null) {
-                this.getAllKeyPaths(object[key][0], paths, path + key + ".");
+                getAllKeyPaths(object[key][0], paths, path + key + ".");
             } else if (typeof object[key] === 'object' && object[key] !== null) {
-                this.getAllKeyPaths(object[key], paths, path + key + ".");
+                getAllKeyPaths(object[key], paths, path + key + ".");
             }
         });
         return paths;
@@ -66,9 +66,9 @@ class MyJSON {
      * Deletes a key in the JavaScript object
      * @param {*} path Path of the key, e.g.: book.author.firstname
      */
-    deleteKey(path) {
+    function deleteKey(path) {
         let keys = path.split(".");
-        let object = this.#json;
+        let object = json;
 
         for (let i = 0; i < keys.length - 1; i++) {
             if (object[keys[i]] instanceof Array && object[keys[i]] !== null) {
@@ -80,5 +80,7 @@ class MyJSON {
 
         delete object[keys[keys.length - 1]];
     }
+
+    return { getJson, getAllKeyPaths, deleteKey };
 }
-export default MyJSON = Object.seal(new MyJSON());
+export const MyJSON = Object.seal(MyJSONmodule());

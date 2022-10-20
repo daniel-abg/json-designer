@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    font-family: Roboto, sans-serif;
 }
 
 main {
@@ -11,6 +12,24 @@ main {
     padding-right: 25px;
 }
 
+.ver-align {
+    display:flex;
+    align-items:center;
+}
+
+.pt-5 {
+    padding-top: 10px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.ml-5 {
+    margin-left: 5px;
+}
+
+/* dropdown.js */
 .mdc-list-item {
     padding-top: 5px !important;
     padding-bottom: 5px !important;
@@ -30,15 +49,22 @@ main {
     width: 100% !important;
 }
 
-.mb-10 {
-    margin-bottom: 10px;
+/* sortable.js */
+#nested-sortable {
+    border: 1px solid #999;
+    border-radius: 10px;
 }
 
-.ml-5 {
-    margin-left: 5px;
+.item {
+    padding: 10px 15px;
+    border-left: 1px solid #999;
+    border-radius: 10px;
 }
 
-.ver-align {
-    display:flex;
-    align-items:center;
+.item:has(.item) {
+    border: 1px solid #999;
+}
+
+.item:hover {
+    border-color: #333;
 }

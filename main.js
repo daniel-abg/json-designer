@@ -1,5 +1,6 @@
-import MyJSON from './json.js'
-import { deleteLiElement, getSelected } from './dropdown.js';
+import { MyJSON } from './json.js'
+import { KeyDropdown } from './dropdown.js';
+import { KeySortable } from './sortable.js';
 
 const MDCTextField = mdc.textField.MDCTextField;
 const MDCTopAppBar = mdc.topAppBar.MDCTopAppBar;
@@ -32,12 +33,13 @@ function pasteJSON() {
 pasteJSON();
 
 /**
- * Deletes a key from JSON and the key dropdown
+ * Deletes a key from the JSON string.
  */
 function deleteKey() {
-    let selectedKey = getSelected();
+    let selectedKey = KeyDropdown.getSelected();
 
     MyJSON.deleteKey(selectedKey);
-    deleteLiElement(selectedKey);
+    KeyDropdown.deleteLiElement(selectedKey);
+    KeySortable.refresh();
     pasteJSON();
 }

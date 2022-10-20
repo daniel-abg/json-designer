@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="style.css">
     <script type="module" src="main.js"></script>
 
+    <!-- SortableJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.js"
+        integrity="sha512-d+dtcSjz831KbYcB3pS7cd3cqlaZ/gbbnZWC4KeLM8AToNtm83Rbc5au5k3bFBh6EwlphOGJtj7oDg6k+NGbPA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <!-- Material Design -->
     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
@@ -41,7 +46,7 @@
                 <span class="mdc-notched-outline__trailing"></span>
             </span>
             <!-- <span class="mdc-text-field__resizer"> -->
-                <textarea id="textarea" class="mdc-text-field__input" aria-label="Label"></textarea>
+            <textarea id="textarea" class="mdc-text-field__input" aria-label="Label"></textarea>
             <!-- </span> -->
         </label>
 
@@ -87,6 +92,8 @@
                     <span class="mdc-button__label">Delete Key</span>
                 </button>
             </div>
+
+            <div id="nested-sortable" class="item"></div>
         </div>
     </main>
 </body>
