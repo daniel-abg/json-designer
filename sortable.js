@@ -1,76 +1,82 @@
 import { MyJSON } from './json.js';
-
-// https://github.com/SortableJS/Sortable
+import { MyService } from './service.js';
 
 const SortableModule = () => {
-    function initialize() {
-        fill();
+    /**
+     * Initializes the sortable
+     */
+    function init() {
+        let sortable = document.getElementById("nested-sortable");
+        let json = JSON.parse(MyJSON.getJson());
+
+        generateHTML(json, sortable);
+        loadJS();
+    }
+    init();
+
+    /**
+     * Represents a Javascript object in form of a nested sortable
+     * @param {*} object JavaScript object which gets represented
+     * @param {*} parentElement HTML element of the sortable
+     */
+    function generateHTML(object, parentElement) {
+        Object.keys(object).forEach(key => {
+            let element = insertItem(parentElement, key);
+
+            if (typeof object[key] === 'object' && object[key] !== null) {
+                generateHTML(object[key], element)
+            }
+        });
+    }
+
+    /**
+     * Creates HTML elements and inserts them into the nested sortable
+     * @param {*} parentElement HTML element in which next one gets inserted
+     * @param {*} text Inner text of the HTML element
+     * @returns The just created and inserted HTML element
+     */
+    function insertItem(parentElement, text) {
+        let divWrapper = MyService.createHtmlElement("div", ["pt-5"]); // wrapper with padding to prevent problems with nested sortable https://jsfiddle.net/4qdmgduo/1/
+        let divItem = MyService.createHtmlElement("div", ["item"], undefined, undefined, text);
+
+        divWrapper.appendChild(divItem);
+        parentElement.appendChild(divWrapper);
+
+        return divItem;
+    }
+
+    /**
+     * Initializes the JavaScript functionality of the nested sortable
+     */
+    function loadJS() {
         let nestedSortables = document.querySelectorAll('.item')
-        
+
         for (var i = 0; i < nestedSortables.length; i++) {
             new Sortable(nestedSortables[i], {
                 group: 'nested',
                 animation: 150,
                 fallbackOnBody: true,
                 swapThreshold: 1,
-                onEnd: onEnd
+                onEnd: doOnDrop
             });
         }
     }
-    initialize();
 
-    function onEnd(evt) {
-        // TODO: reflect order and hierarchy changes in the JSON string
+    /**
+     * Applies order and hierarchy changes of the sortable to the JavaScript object
+     * @param {*} evt 
+     */
+    function doOnDrop(evt) {
+        // TODO: Apply order and hierarchy changes to the object
         console.log(evt.item);
         console.log(evt.from);
         console.log(evt.oldIndex);
         console.log(evt.to);
         console.log(evt.newIndex);
-        console.log(mySerial(document.getElementById('nested-sortable')));
+        console.log(getNewStructure(document.getElementById('nested-sortable')));
     }
 
-    function fill() {
-        let sortable = document.getElementById("nested-sortable");
-
-        let json = JSON.parse(MyJSON.getJson());
-        fillSortable2(json, sortable);
-    }
-
-    function fillSortable2(object = json, parentEl) {
-        Object.keys(object).forEach(key => {
-            let el = createLiElement(parentEl, key);
-
-            if (typeof object[key] === 'object' && object[key] !== null) {
-                fillSortable2(object[key], el)
-            }
-        });
-    }
-
-    /**
-     * Creates and inserts <div class="pt-5"><div class="item">text</div></div>
-     * @param {*} parent 
-     * @param {*} text 
-     * @returns 
-     */
-    function createLiElement(parent, text) {
-        let divWrapper;
-        let divItem;
-
-        // wrapper to prevent problems with nested sortable https://jsfiddle.net/4qdmgduo/1/
-        divWrapper = document.createElement("div");
-        divWrapper.className = "pt-5";
-
-        divItem = document.createElement("div");
-        divItem.className = "item";
-        divItem.innerText = text;
-
-        divWrapper.appendChild(divItem);
-        parent.appendChild(divWrapper);
-
-        return divItem;
-    }
-
-    function mySerial(sortable, paths = [], path = '') {
+    function getNewStructure(sortable, paths = [], path = '') {
         let children = Array.from(sortable.children);
         for (const c of children) {
             let child = c.querySelector('.item');
@@ -83,18 +89,24 @@ const SortableModule = () => {
             }
 
             paths.push(path + innerTextUntilNewline);
-
-            mySerial(child, paths, path + innerTextUntilNewline + '.');
+            getNewStructure(child, paths, path + innerTextUntilNewline + '.');
         }
         return paths;
     }
 
+    /**
+     * Rebuilds the whole nested sortable
+     */
     function refresh() {
-        let sortable = document.getElementById('nested-sortable');
-        sortable.innerHTML = '';
-        initialize();
+        let sortable = document.getElementById("nested-sortable");
+        let json = JSON.parse(MyJSON.getJson());
+
+        sortable.innerHTML = "";
+
+        generateHTML(json, sortable);
+        loadJS();
     }
 
-    return { fill, refresh }
+    return { refresh }
 }
 export const KeySortable = Object.seal(SortableModule());

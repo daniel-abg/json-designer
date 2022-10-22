@@ -39,7 +39,7 @@ function deleteKey() {
     let selectedKey = KeyDropdown.getSelected();
 
     MyJSON.deleteKey(selectedKey);
-    KeyDropdown.deleteLiElement(selectedKey);
+    KeyDropdown.refresh();
     KeySortable.refresh();
     pasteJSON();
 }

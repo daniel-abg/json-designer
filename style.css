@@ -13,16 +13,16 @@ main {
 }
 
 .ver-align {
-    display:flex;
-    align-items:center;
+    display: flex;
+    align-items: center;
 }
 
 .pt-5 {
     padding-top: 10px;
 }
 
-.mb-10 {
-    margin-bottom: 10px;
+.mb-25 {
+    margin-bottom: 25px;
 }
 
 .ml-5 {
@@ -68,3 +68,11 @@ main {
 .item:hover {
     border-color: #333;
 }
+
+/* TODO: Ensure responsiveness
+@media (max-width: 750px) {
+    .item {
+        padding: 5px 7px;
+    }
+}
+*/
