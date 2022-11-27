@@ -56,6 +56,7 @@ const DropdownModule = () => {
         dropdown.innerHTML = "";
         generateHTML();
         selectKey.layoutOptions();
+        selectKey.selectedIndex = -1;
     }
 
     return { getSelected, refresh }

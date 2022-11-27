@@ -19,12 +19,12 @@ const SortableModule = () => {
      * @param {*} object JavaScript object which gets represented
      * @param {*} parentElement HTML element of the sortable
      */
-    function generateHTML(object, parentElement) {
+    function generateHTML(object, parentElement, path = '') {
         Object.keys(object).forEach(key => {
-            let element = insertItem(parentElement, key);
+            let element = insertItem(parentElement, key, path + key);
 
             if (typeof object[key] === 'object' && object[key] !== null) {
-                generateHTML(object[key], element)
+                generateHTML(object[key], element, path + key + '.')
             }
         });
     }
@@ -35,18 +35,26 @@ const SortableModule = () => {
      * @param {*} text Inner text of the HTML element
      * @returns The just created and inserted HTML element
      */
-    function insertItem(parentElement, text) {
+    function insertItem(parentElement, text, path) {
         let divWrapper = MyService.createHtmlElement("div", ["pt-5"]); // wrapper with padding to prevent problems with nested sortable https://jsfiddle.net/4qdmgduo/1/
-        let divItem = MyService.createHtmlElement("div", ["item"], undefined, undefined, text);
-
+        let divItem = MyService.createHtmlElement("div", ["item"], undefined, {path: path}, text);
+        let iconDelete = `<i data-path="${path}" style="float: right;" class="material-icons iconDelete" aria-hidden="true">delete</i>`;
+        let buttonDelete = `<button data-path="${path}" style="float: right;" id="buttonDeleteKey" class="ml-5 mdc-button buttonDelete">
+                                <span class="mdc-button__ripple"></span>
+                                <i class="material-icons" aria-hidden="true">delete</i>
+                            </button>`
+        
         divWrapper.appendChild(divItem);
+        divWrapper.insertAdjacentHTML("afterbegin", buttonDelete);
+        //divWrapper.insertAdjacentHTML("afterbegin", iconDelete);
         parentElement.appendChild(divWrapper);
-
+        
         return divItem;
     }
 
     /**
      * Initializes the JavaScript functionality of the nested sortable
+     * Documentation: https://github.com/SortableJS/Sortable#options
      */
     function loadJS() {
         let nestedSortables = document.querySelectorAll('.item')
@@ -55,6 +63,7 @@ const SortableModule = () => {
             new Sortable(nestedSortables[i], {
                 group: 'nested',
                 animation: 150,
+                filter: ".buttonDelete",
                 fallbackOnBody: true,
                 swapThreshold: 1,
                 onEnd: doOnDrop

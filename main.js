@@ -1,5 +1,5 @@
 import { MyJSON } from './json.js'
-import { KeyDropdown } from './dropdown.js';
+// import { KeyDropdown } from './dropdown.js';
 import { KeySortable } from './sortable.js';
 
 const MDCTextField = mdc.textField.MDCTextField;
@@ -10,7 +10,17 @@ const topAppBar = new MDCTopAppBar(document.querySelector('.mdc-top-app-bar'));
 
 // EventListeners
 document.querySelector('#copyJSON').addEventListener('click', copyJSON);
-document.querySelector('#deleteKey').addEventListener('click', deleteKey);
+//document.querySelector('#buttonDeleteKey').addEventListener('click', deleteKey);
+initSortableEventListener();
+
+function initSortableEventListener() {
+    document.querySelectorAll('.buttonDelete').forEach(icon => {
+        icon.addEventListener('click', function(e) {
+            console.log(e);
+            deleteKey(e.path[1].attributes[0].value);
+        });
+    })
+}
 
 /**
  * Number of spaces of intendation in the JSON string.
@@ -35,11 +45,12 @@ pasteJSON();
 /**
  * Deletes a key from the JSON string.
  */
-function deleteKey() {
-    let selectedKey = KeyDropdown.getSelected();
+function deleteKey(selectedKey) {
+    //let selectedKey = KeyDropdown.getSelected();
 
     MyJSON.deleteKey(selectedKey);
-    KeyDropdown.refresh();
+    //KeyDropdown.refresh();
     KeySortable.refresh();
+    initSortableEventListener();
     pasteJSON();
 }
