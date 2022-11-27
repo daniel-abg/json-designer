@@ -2,11 +2,13 @@ import { MyJSON } from './json.js'
 // import { KeyDropdown } from './dropdown.js';
 import { KeySortable } from './sortable.js';
 
-const MDCTextField = mdc.textField.MDCTextField;
 const MDCTopAppBar = mdc.topAppBar.MDCTopAppBar;
+const MDCTabBar = mdc.tabBar.MDCTabBar;
+const MDCTextField = mdc.textField.MDCTextField;
 
-const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 const topAppBar = new MDCTopAppBar(document.querySelector('.mdc-top-app-bar'));
+const tabBar = new MDCTabBar(document.querySelector('.mdc-tab-bar'));
+const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 // EventListeners
 document.querySelector('#copyJSON').addEventListener('click', copyJSON);

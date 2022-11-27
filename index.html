@@ -40,63 +40,97 @@
     </header>
 
     <main class="mdc-top-app-bar--fixed-adjust">
-        <label class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea mdc-text-field--no-label">
-            <span class="mdc-notched-outline">
-                <span class="mdc-notched-outline__leading"></span>
-                <span class="mdc-notched-outline__trailing"></span>
-            </span>
-            <!-- <span class="mdc-text-field__resizer"> -->
-            <textarea id="textarea" class="mdc-text-field__input" aria-label="Label"></textarea>
-            <!-- </span> -->
-        </label>
-
-        <div>
-            <div class="mb-25">
-                <button id="copyJSON" class="mdc-button mdc-button--raised mdc-button--leading">
-                    <span class="mdc-button__ripple"></span>
-                    <i class="material-icons mdc-button__icon" aria-hidden="true">content_copy</i>
-                    <span class="mdc-button__label">Copy JSON</span>
-                </button>
-            </div>
-
-            <!-- 
-            <div class="mb-25">
-                <div class="mdc-select mdc-select-keys mdc-select--filled demo-width-class">
-                    <div class="mdc-select__anchor" role="button" aria-haspopup="listbox" aria-expanded="false"
-                        aria-labelledby="demo-label demo-selected-text">
-                        <span class="mdc-select__ripple"></span>
-                        <span id="demo-label" class="mdc-floating-label">Key</span>
-                        <span class="mdc-select__selected-text-container">
-                            <span id="demo-selected-text" class="mdc-select__selected-text"></span>
-                        </span>
-                        <span class="mdc-select__dropdown-icon">
-                            <svg class="mdc-select__dropdown-icon-graphic" viewBox="7 10 10 5" focusable="false">
-                                <polygon class="mdc-select__dropdown-icon-inactive" stroke="none" fill-rule="evenodd"
-                                    points="7 10 12 15 17 10">
-                                </polygon>
-                                <polygon class="mdc-select__dropdown-icon-active" stroke="none" fill-rule="evenodd"
-                                    points="7 15 12 10 17 15">
-                                </polygon>
-                            </svg>
-                        </span>
-                        <span class="mdc-line-ripple"></span>
-                    </div>
-
-                    <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
-                        <ul id="dropdown" class="mdc-list" role="listbox" aria-label="Key picker listbox"></ul>
+        <div class="mdc-tab-bar mb-25" role="tablist">
+            <div class="mdc-tab-scroller">
+                <div class="mdc-tab-scroller__scroll-area">
+                    <div class="mdc-tab-scroller__scroll-content">
+                        <button class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
+                            <span class="mdc-tab__content">
+                                <span class="mdc-tab__icon material-icons" aria-hidden="true">data_object</span>
+                                <span class="mdc-tab__text-label">JSON</span>
+                            </span>
+                            <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                                <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                            </span>
+                            <span class="mdc-tab__ripple"
+                                onclick="document.querySelector('#tab1').style.display = 'block'; document.querySelector('#tab2').style.display = 'none'"></span>
+                        </button>
+                        <button class="mdc-tab" role="tab" aria-selected="true" tabindex="0">
+                            <span class="mdc-tab__content">
+                                <span class="mdc-tab__icon material-icons" aria-hidden="true">brush</span>
+                                <span class="mdc-tab__text-label">Designer</span>
+                            </span>
+                            <span class="mdc-tab-indicator">
+                                <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                            </span>
+                            <span class="mdc-tab__ripple"
+                                onclick="document.querySelector('#tab2').style.display = 'block'; document.querySelector('#tab1').style.display = 'none'"></span>
+                        </button>
                     </div>
                 </div>
             </div>
-            
-            <div class="mb-25">
-                <button id="buttonDeleteKey" class="ml-5 mdc-button mdc-button--raised mdc-button--leading">
-                    <span class="mdc-button__ripple"></span>
-                    <i class="material-icons mdc-button__icon" aria-hidden="true">delete</i>
-                    <span class="mdc-button__label">Delete Key</span>
-                </button>
-            </div> -->
+        </div>
 
-            <div id="nested-sortable" class="item"></div>
+        <div id="tab1">
+            <label
+                class="mdc-text-field mdc-text-field--outlined mdc-text-field--textarea mdc-text-field--no-label mb-25">
+                <span class="mdc-notched-outline">
+                    <span class="mdc-notched-outline__leading"></span>
+                    <span class="mdc-notched-outline__trailing"></span>
+                </span>
+                <!-- <span class="mdc-text-field__resizer"> -->
+                <textarea id="textarea" class="mdc-text-field__input" aria-label="Label"></textarea>
+                <!-- </span> -->
+            </label>
+
+            <!-- 
+                <div class="mb-25">
+                    <div class="mdc-select mdc-select-keys mdc-select--filled demo-width-class">
+                        <div class="mdc-select__anchor" role="button" aria-haspopup="listbox" aria-expanded="false"
+                            aria-labelledby="demo-label demo-selected-text">
+                            <span class="mdc-select__ripple"></span>
+                            <span id="demo-label" class="mdc-floating-label">Key</span>
+                            <span class="mdc-select__selected-text-container">
+                                <span id="demo-selected-text" class="mdc-select__selected-text"></span>
+                            </span>
+                            <span class="mdc-select__dropdown-icon">
+                                <svg class="mdc-select__dropdown-icon-graphic" viewBox="7 10 10 5" focusable="false">
+                                    <polygon class="mdc-select__dropdown-icon-inactive" stroke="none" fill-rule="evenodd"
+                                        points="7 10 12 15 17 10">
+                                    </polygon>
+                                    <polygon class="mdc-select__dropdown-icon-active" stroke="none" fill-rule="evenodd"
+                                        points="7 15 12 10 17 15">
+                                    </polygon>
+                                </svg>
+                            </span>
+                            <span class="mdc-line-ripple"></span>
+                        </div>
+
+                        <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
+                            <ul id="dropdown" class="mdc-list" role="listbox" aria-label="Key picker listbox"></ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mb-25">
+                    <button id="buttonDeleteKey" class="ml-5 mdc-button mdc-button--raised mdc-button--leading">
+                        <span class="mdc-button__ripple"></span>
+                        <i class="material-icons mdc-button__icon" aria-hidden="true">delete</i>
+                        <span class="mdc-button__label">Delete Key</span>
+                    </button>
+                </div> -->
+        </div>
+
+        <div id="tab2" hidden>
+            <div id="nested-sortable" class="item mb-25"></div>
+        </div>
+
+        <div>
+            <button id="copyJSON" class="mdc-button mdc-button--raised mdc-button--leading">
+                <span class="mdc-button__ripple"></span>
+                <i class="material-icons mdc-button__icon" aria-hidden="true">content_copy</i>
+                <span class="mdc-button__label">Copy JSON</span>
+            </button>
         </div>
     </main>
 </body>
