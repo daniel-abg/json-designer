@@ -41,6 +41,10 @@ const MyJSONmodule = () => {
         return JSON.stringify(json, null, space);
     }
 
+    function setJson(object) {
+        json = object;
+    }
+
     /**
      * Returns the paths of all keys from a JavaScript object
      * @source: https://infinitbility.com/how-to-get-all-keys-from-nested-json-object-in-javascript/
@@ -81,6 +85,6 @@ const MyJSONmodule = () => {
         delete object[keys[keys.length - 1]];
     }
 
-    return { getJson, getAllKeyPaths, deleteKey };
+    return { getJson, setJson, getAllKeyPaths, deleteKey };
 }
 export const MyJSON = Object.seal(MyJSONmodule());

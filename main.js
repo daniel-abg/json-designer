@@ -12,6 +12,7 @@ const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
 // EventListeners
 document.querySelector('#copyJSON').addEventListener('click', copyJSON);
+document.querySelector('#pasteJSON').addEventListener('click', pasteJSON);
 //document.querySelector('#buttonDeleteKey').addEventListener('click', deleteKey);
 initSortableEventListener();
 

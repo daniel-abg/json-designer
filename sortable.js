@@ -76,13 +76,12 @@ const SortableModule = () => {
      * @param {*} evt 
      */
     function doOnDrop(evt) {
-        // TODO: Apply order and hierarchy changes to the object
-        console.log(evt.item);
-        console.log(evt.from);
-        console.log(evt.oldIndex);
-        console.log(evt.to);
-        console.log(evt.newIndex);
-        console.log(getNewStructure(document.getElementById('nested-sortable')));
+        // console.log(evt.item);
+        // console.log(evt.from);
+        // console.log(evt.oldIndex);
+        // console.log(evt.to);
+        // console.log(evt.newIndex);
+        MyJSON.setJson(getJSObject());
     }
 
     function getNewStructure(sortable, paths = [], path = '') {
@@ -101,6 +100,32 @@ const SortableModule = () => {
             getNewStructure(child, paths, path + innerTextUntilNewline + '.');
         }
         return paths;
+    }
+
+    function getJSObject() {
+        let structure = getNewStructure(document.getElementById('nested-sortable'));
+        let json = {};
+
+        for(let i = 0; i < structure.length; i++) {
+            addKey(json, structure[i]);
+        }
+
+        return json;
+    }
+
+    function addKey(json, path) {
+        let keys = path.split(".");
+        let object = json;
+        
+        for (let i = 0; i < keys.length - 1; i++) {
+            if (object[keys[i]] instanceof Array && object[keys[i]] !== null) {
+                object = object[keys[i]][0];
+            } else if (typeof object[keys[i]] === 'object' && object[keys[i]] !== null) {
+                object = object[keys[i]];
+            }
+        }
+
+        object[keys.at(-1)] = {};
     }
 
     /**

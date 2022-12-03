@@ -35,15 +35,16 @@ main {
 }
 
 /* dropdown.js */
-.mdc-list-item {
+/* .mdc-list-item {
     padding-top: 5px !important;
     padding-bottom: 5px !important;
 }
 
 .mdc-menu-surface--fullwidth {
     width: max-content !important;
-}
+} */
 
+/* textfield */
 .mdc-text-field--textarea {
     height: 500px !important;
     width: 100% !important;
@@ -53,6 +54,7 @@ main {
 #nested-sortable {
     border: 1px solid #999;
     border-radius: 4px;
+    cursor: default;
 }
 
 .item {
