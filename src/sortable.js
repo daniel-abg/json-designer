@@ -1,6 +1,8 @@
 import { MyJSON } from './json.js';
 import { MyService } from './service.js';
 
+import Sortable from '../node_modules/sortablejs/modular/sortable.esm.js';
+
 const SortableModule = () => {
     /**
      * Initializes the sortable
