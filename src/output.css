@@ -554,6 +554,18 @@ video {
   display: none;
 }
 
+.mb-24 {
+  margin-bottom: 6rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+.ml-2 {
+  margin-left: 0.5rem;
+}
+
 .ml-5 {
   margin-left: 1.25rem;
 }
@@ -579,8 +591,8 @@ video {
   padding-left: 2.5rem;
 }
 
-.pt-5 {
-  padding-top: 1.25rem;
+.pt-2 {
+  padding-top: 0.5rem;
 }
 
 .text-xl {
@@ -618,23 +630,6 @@ main {
 .ver-align {
   display: flex;
   align-items: center;
-}
-
-.pt-5 {
-  /*TODO: rename class */
-  padding-top: 10px;
-}
-
-.mt-25 {
-  margin-top: 25px;
-}
-
-.mb-25 {
-  margin-bottom: 25px;
-}
-
-.ml-5 {
-  margin-left: 5px;
 }
 
 /* dropdown.js */

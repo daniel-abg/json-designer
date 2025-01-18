@@ -21,23 +21,6 @@ main {
     align-items: center;
 }
 
-.pt-5 {
-    /*TODO: rename class */
-    padding-top: 10px;
-}
-
-.mt-25 {
-    margin-top: 25px;
-}
-
-.mb-25 {
-    margin-bottom: 25px;
-}
-
-.ml-5 {
-    margin-left: 5px;
-}
-
 /* dropdown.js */
 /* .mdc-list-item {
     padding-top: 5px !important;
