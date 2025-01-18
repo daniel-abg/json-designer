@@ -8,9 +8,8 @@ const MDCTextField = mdc.textField.MDCTextField;
 const tabBar = new MDCTabBar(document.querySelector('.mdc-tab-bar'));
 const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
 
-// EventListeners
-document.querySelector('#copyJSON').addEventListener('click', copyJSON);
-document.querySelector('#pasteJSON').addEventListener('click', pasteJSON);
+document.querySelector('#copyJSON').addEventListener('click', copyJsonToClipboard);
+document.querySelector('#pasteJSON').addEventListener('click', pasteJsonToEditor);
 //document.querySelector('#buttonDeleteKey').addEventListener('click', deleteKey);
 initSortableEventListener();
 
@@ -23,25 +22,16 @@ function initSortableEventListener() {
     })
 }
 
-/**
- * Number of spaces of intendation in the JSON string.
- */
-let intendationSpaces = 2;
+const numberOfIntendationSpaces = 2;
 
-/**
- * Copies the JSON string into the clipboard of the user.
- */
-function copyJSON() {
-    navigator.clipboard.writeText(MyJSON.getJson(intendationSpaces));
+function copyJsonToClipboard() {
+    navigator.clipboard.writeText(MyJSON.getJson(numberOfIntendationSpaces));
 }
 
-/**
- * Pastes the JSON string into the textarea.
- */
-function pasteJSON() {
-    textField.value = MyJSON.getJson(intendationSpaces);
+function pasteJsonToEditor() {
+    textField.value = MyJSON.getJson(numberOfIntendationSpaces);
 }
-pasteJSON();
+pasteJsonToEditor();
 
 /**
  * Deletes a key from the JSON string.
@@ -53,5 +43,5 @@ function deleteKey(selectedKey) {
     //KeyDropdown.refresh();
     KeySortable.refresh();
     initSortableEventListener();
-    pasteJSON();
+    pasteJsonToEditor();
 }
