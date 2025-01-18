@@ -40,7 +40,6 @@ const SortableModule = () => {
     function insertItem(parentElement, text, path) {
         let divWrapper = MyService.createHtmlElement("div", ["pt-2"]); // wrapper with padding to prevent problems with nested sortable https://jsfiddle.net/4qdmgduo/1/
         let divItem = MyService.createHtmlElement("div", ["item"], undefined, {path: path}, text);
-        let iconDelete = `<i data-path="${path}" style="float: right;" class="material-icons iconDelete" aria-hidden="true">delete</i>`;
         let buttonDelete = `<button data-path="${path}" style="float: right;" id="buttonDeleteKey" class="ml-2 mdc-button buttonDelete">
                                 <span class="mdc-button__ripple"></span>
                                 <i class="fa-solid fa-trash"></i>
@@ -48,7 +47,6 @@ const SortableModule = () => {
         
         divWrapper.appendChild(divItem);
         divWrapper.insertAdjacentHTML("afterbegin", buttonDelete);
-        //divWrapper.insertAdjacentHTML("afterbegin", iconDelete);
         parentElement.appendChild(divWrapper);
         
         return divItem;
