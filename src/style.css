@@ -21,16 +21,6 @@ main {
     align-items: center;
 }
 
-/* dropdown.js */
-/* .mdc-list-item {
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-}
-
-.mdc-menu-surface--fullwidth {
-    width: max-content !important;
-} */
-
 /* textfield */
 .mdc-text-field--textarea {
     height: 500px !important;

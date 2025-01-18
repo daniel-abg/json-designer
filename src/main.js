@@ -1,5 +1,4 @@
 import { MyJSON } from './json.js'
-// import { KeyDropdown } from './dropdown.js';
 import { KeySortable } from './sortable.js';
 
 const MDCTabBar = mdc.tabBar.MDCTabBar;
