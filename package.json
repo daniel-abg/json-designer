@@ -8,6 +8,7 @@
   "author": "Daniel Abgottspon",
   "license": "UNLICENSED",
   "dependencies": {
-    "sortablejs": "^1.15.6"
+    "sortablejs": "^1.15.6",
+    "tailwindcss": "^3.4.17"
   }
 }
