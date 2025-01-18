@@ -43,7 +43,7 @@ const SortableModule = () => {
         let iconDelete = `<i data-path="${path}" style="float: right;" class="material-icons iconDelete" aria-hidden="true">delete</i>`;
         let buttonDelete = `<button data-path="${path}" style="float: right;" id="buttonDeleteKey" class="ml-2 mdc-button buttonDelete">
                                 <span class="mdc-button__ripple"></span>
-                                <i class="material-icons" aria-hidden="true">delete</i>
+                                <i class="fa-solid fa-trash"></i>
                             </button>`
         
         divWrapper.appendChild(divItem);
