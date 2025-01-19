@@ -12,7 +12,7 @@ const SortableModule = () => {
         let json = JSON.parse(MyJSON.getJson());
 
         generateHTML(json, sortable);
-        loadJS();
+        initSortable();
     }
     init();
 
@@ -38,12 +38,15 @@ const SortableModule = () => {
      * @returns The just created and inserted HTML element
      */
     function insertItem(parentElement, text, path) {
-        let divWrapper = MyService.createHtmlElement("div", ["pt-2"]); // wrapper with padding to prevent problems with nested sortable https://jsfiddle.net/4qdmgduo/1/
-        let divItem = MyService.createHtmlElement("div", ["item"], undefined, {path: path}, text);
-        let buttonDelete = `<button data-path="${path}" style="float: right;" id="buttonDeleteKey" class="ml-2 mdc-button buttonDelete">
-                                <span class="mdc-button__ripple"></span>
-                                <i class="fa-solid fa-trash"></i>
-                            </button>`
+        // wrapper with padding to prevent problems with nested sortable https://jsfiddle.net/4qdmgduo/1/
+        const divWrapper = MyService.createHtmlElement("div", ["pt-2"]);
+        const divItem = MyService.createHtmlElement("div", ["item"], undefined, {path: path}, text);
+        const buttonDelete = `
+            <button data-path="${path}" style="float: right;" id="buttonDeleteKey" class="ml-2 mdc-button buttonDelete">
+                <span class="mdc-button__ripple"></span>
+                <i class="fa-solid fa-trash"></i>
+            </button>
+        `;
         
         divWrapper.appendChild(divItem);
         divWrapper.insertAdjacentHTML("afterbegin", buttonDelete);
@@ -53,10 +56,9 @@ const SortableModule = () => {
     }
 
     /**
-     * Initializes the JavaScript functionality of the nested sortable
      * Documentation: https://github.com/SortableJS/Sortable#options
      */
-    function loadJS() {
+    function initSortable() {
         let nestedSortables = document.querySelectorAll('.item')
 
         for (var i = 0; i < nestedSortables.length; i++) {
@@ -138,7 +140,7 @@ const SortableModule = () => {
         sortable.innerHTML = "";
 
         generateHTML(json, sortable);
-        loadJS();
+        initSortable();
     }
 
     return { refresh }
