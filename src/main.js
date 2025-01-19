@@ -35,10 +35,7 @@ pasteJsonToEditor();
  * Deletes a key from the JSON string.
  */
 function deleteKey(selectedKey) {
-    //let selectedKey = KeyDropdown.getSelected();
-
     MyJSON.deleteKey(selectedKey);
-    //KeyDropdown.refresh();
     KeySortable.refresh();
     initSortableEventListener();
     pasteJsonToEditor();
