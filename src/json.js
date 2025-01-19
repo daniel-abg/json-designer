@@ -47,7 +47,6 @@ const MyJSONmodule = () => {
 
     /**
      * Returns the paths of all keys from a JavaScript object
-     * @source: https://infinitbility.com/how-to-get-all-keys-from-nested-json-object-in-javascript/
      * @param {*} object JavaScript object that can be nested and contain arrays
      * @param {*} paths All already collected paths
      * @param {*} path The current location to search for keys
