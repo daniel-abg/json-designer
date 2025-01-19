@@ -42,8 +42,8 @@ const SortableModule = () => {
         const divWrapper = MyService.createHtmlElement("div", ["pt-2"]);
         const divItem = MyService.createHtmlElement("div", ["item"], undefined, {path: path}, text);
         const buttonDelete = `
-            <button data-path="${path}" style="float: right;" id="buttonDeleteKey" class="ml-2 mdc-button buttonDelete">
-                <span class="mdc-button__ripple"></span>
+            <button style="float: right;" id="buttonDeleteKey" class="ml-2 mdc-button buttonDelete">
+                <span class="mdc-button__ripple" data-path="${path}"></span>
                 <i class="fa-solid fa-trash"></i>
             </button>
         `;

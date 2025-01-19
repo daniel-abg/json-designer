@@ -14,8 +14,7 @@ initSortableEventListener();
 function initSortableEventListener() {
     document.querySelectorAll('.buttonDelete').forEach(icon => {
         icon.addEventListener('click', function(e) {
-            console.log(e);
-            deleteKey(e.path[1].attributes[0].value);
+            deleteKey(e.target.attributes[1].value);
         });
     })
 }
