@@ -68,22 +68,9 @@ const SortableModule = () => {
                 filter: ".buttonDelete",
                 fallbackOnBody: true,
                 swapThreshold: 1,
-                onEnd: doOnDrop
+                onEnd: MyJSON.setJson(getJSObject())
             });
         }
-    }
-
-    /**
-     * Applies order and hierarchy changes of the sortable to the JavaScript object
-     * @param {*} evt 
-     */
-    function doOnDrop(evt) {
-        // console.log(evt.item);
-        // console.log(evt.from);
-        // console.log(evt.oldIndex);
-        // console.log(evt.to);
-        // console.log(evt.newIndex);
-        MyJSON.setJson(getJSObject());
     }
 
     function getNewStructure(sortable, paths = [], path = '') {
