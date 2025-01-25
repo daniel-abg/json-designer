@@ -14,7 +14,6 @@ const SortableModule = () => {
         generateHTML(json, sortable);
         initSortable();
     }
-    init();
 
     /**
      * Represents a Javascript object in form of a nested sortable
@@ -139,6 +138,6 @@ const SortableModule = () => {
         initSortable();
     }
 
-    return { refresh }
+    return { init, refresh }
 }
 export const KeySortable = Object.seal(SortableModule());

@@ -1,6 +1,8 @@
 import { MyJSON } from './json.js'
 import { KeySortable } from './sortable.js';
 
+KeySortable.init();
+
 document.querySelector('#copyJSON').addEventListener('click', copyJsonToClipboard);
 
 const numberOfIntendationSpaces = 2;
