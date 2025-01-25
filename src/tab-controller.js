@@ -36,7 +36,7 @@ class TabController extends HTMLElement {
                     display: none;
                 }
             </style>
-            
+
             <div id="tab-bar">            
                 <div name="tab1" class="tab active" >
                     <slot name="tab1"></slot>
@@ -69,7 +69,6 @@ class TabController extends HTMLElement {
         
         this.shadowRoot.querySelectorAll('slot.tabcontent').forEach(slot => {           
             if (slot.id === tab.getAttribute('name')) {
-                console.log(tab);
                 slot.classList.remove('hidden');
             } else {
                 slot.classList.add('hidden');
