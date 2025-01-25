@@ -40,11 +40,10 @@ const SortableModule = () => {
     function insertItem(parentElement, text, path) {
         // wrapper with padding to prevent problems with nested sortable https://jsfiddle.net/4qdmgduo/1/
         const divWrapper = MyService.createHtmlElement("div", ["pt-2"]);
-        const divItem = MyService.createHtmlElement("div", ["item"], undefined, {path: path}, text);        
+        const divItem = MyService.createHtmlElement("div", ["item"], {path: path}, text);        
         
         const buttonDelete = MyService.createHtmlElement("button",
             ["buttonDelete", "py-2", "px-3", "rounded-md", "hover:bg-violet-200", "active:bg-violet-300"],
-            undefined,
             { style: "float: right;" }
         );
         const icon = MyService.createHtmlElement("i", ["fa-solid", "fa-trash", "text-violet-800"]);
