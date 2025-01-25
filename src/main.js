@@ -2,7 +2,6 @@ import { MyJSON } from './json.js'
 import { KeySortable } from './sortable.js';
 
 document.querySelector('#copyJSON').addEventListener('click', copyJsonToClipboard);
-document.querySelector('#pasteJSON').addEventListener('click', pasteJsonToEditor);
 initSortableEventListener();
 
 function initSortableEventListener() {
