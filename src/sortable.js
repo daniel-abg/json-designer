@@ -33,28 +33,28 @@ const SortableModule = () => {
 
     /**
      * Creates HTML elements and inserts them into the nested sortable
-     * @param {*} parentElement HTML element in which next one gets inserted
+     * @param {*} parent HTML element in which next one gets inserted
      * @param {*} text Inner text of the HTML element
      * @returns The just created and inserted HTML element
      */
-    function insertItem(parentElement, text, path) {
+    function insertItem(parent, text, path) {
         // wrapper with padding to prevent problems with nested sortable https://jsfiddle.net/4qdmgduo/1/
-        const divWrapper = MyService.createHtmlElement("div", ["pt-2"]);
-        const divItem = MyService.createHtmlElement("div", ["item"], {path: path}, text);        
+        const wrapper = MyService.createHtmlElement("div", ["pt-2"]);
+        const item = MyService.createHtmlElement("div", ["item"], {path: path}, text);        
         
         const buttonDelete = MyService.createHtmlElement("button",
             ["buttonDelete", "py-2", "px-3", "rounded-md", "hover:bg-violet-200", "active:bg-violet-300"],
             { style: "float: right;" }
         );
-        const icon = MyService.createHtmlElement("i", ["fa-solid", "fa-trash", "text-violet-800"]);
-        buttonDelete.appendChild(icon);
+        const iconDelete = MyService.createHtmlElement("i", ["fa-solid", "fa-trash", "text-violet-800"]);
+        buttonDelete.appendChild(iconDelete);
         buttonDelete.addEventListener("click", () => deleteKey(path));
     
-        divWrapper.appendChild(buttonDelete);
-        divWrapper.appendChild(divItem);
-        parentElement.appendChild(divWrapper);
+        wrapper.appendChild(buttonDelete);
+        wrapper.appendChild(item);
+        parent.appendChild(wrapper);
         
-        return divItem;
+        return item;
     }
 
     /**
