@@ -40,18 +40,19 @@ const SortableModule = () => {
     function insertItem(parentElement, text, path) {
         // wrapper with padding to prevent problems with nested sortable https://jsfiddle.net/4qdmgduo/1/
         const divWrapper = MyService.createHtmlElement("div", ["pt-2"]);
-        const divItem = MyService.createHtmlElement("div", ["item"], undefined, {path: path}, text);
-        const buttonDelete = `
-            <button data-path="${path}"
-                    class="buttonDelete py-2 px-3 rounded-md hover:bg-violet-200 active:bg-violet-300"
-                    style="float: right;"
-            >
-                <i class="text-violet-800 fa-solid fa-trash"></i>
-            </button>
-        `;
+        const divItem = MyService.createHtmlElement("div", ["item"], undefined, {path: path}, text);        
         
+        const buttonDelete = MyService.createHtmlElement("button",
+            ["buttonDelete", "py-2", "px-3", "rounded-md", "hover:bg-violet-200", "active:bg-violet-300"],
+            undefined,
+            { style: "float: right;" }
+        );
+        const icon = MyService.createHtmlElement("i", ["fa-solid", "fa-trash", "text-violet-800"]);
+        buttonDelete.appendChild(icon);
+        buttonDelete.addEventListener("click", () => deleteKey(path));
+    
+        divWrapper.appendChild(buttonDelete);
         divWrapper.appendChild(divItem);
-        divWrapper.insertAdjacentHTML("afterbegin", buttonDelete);
         parentElement.appendChild(divWrapper);
         
         return divItem;
@@ -119,6 +120,11 @@ const SortableModule = () => {
         }
 
         object[keys.at(-1)] = {};
+    }
+
+    function deleteKey(selectedKey) {
+        MyJSON.deleteKey(selectedKey);
+        KeySortable.refresh();
     }
 
     /**
