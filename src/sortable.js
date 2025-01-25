@@ -1,5 +1,5 @@
 import { MyJSON } from './json.js';
-import { MyService } from './service.js';
+import { createHtmlElement } from './service.js';
 
 import Sortable from '../node_modules/sortablejs/modular/sortable.esm.js';
 
@@ -39,14 +39,14 @@ const SortableModule = () => {
      */
     function insertItem(parent, text, path) {
         // wrapper with padding to prevent problems with nested sortable https://jsfiddle.net/4qdmgduo/1/
-        const wrapper = MyService.createHtmlElement("div", ["pt-2"]);
-        const item = MyService.createHtmlElement("div", ["item"], {path: path}, text);        
+        const wrapper = createHtmlElement("div", ["pt-2"]);
+        const item = createHtmlElement("div", ["item"], {path: path}, text);        
         
-        const buttonDelete = MyService.createHtmlElement("button",
+        const buttonDelete = createHtmlElement("button",
             ["buttonDelete", "py-2", "px-3", "rounded-md", "hover:bg-violet-200", "active:bg-violet-300"],
             { style: "float: right;" }
         );
-        const iconDelete = MyService.createHtmlElement("i", ["fa-solid", "fa-trash", "text-violet-800"]);
+        const iconDelete = createHtmlElement("i", ["fa-solid", "fa-trash", "text-violet-800"]);
         buttonDelete.appendChild(iconDelete);
         buttonDelete.addEventListener("click", () => deleteKey(path));
     
