@@ -84,6 +84,6 @@ const MyJSONmodule = () => {
         delete object[keys[keys.length - 1]];
     }
 
-    return { getJson, setJson, getAllKeyPaths, deleteKey };
+    return { getJson, setJson, deleteKey };
 }
 export const MyJSON = Object.seal(MyJSONmodule());
