@@ -42,9 +42,11 @@ const SortableModule = () => {
         const divWrapper = MyService.createHtmlElement("div", ["pt-2"]);
         const divItem = MyService.createHtmlElement("div", ["item"], undefined, {path: path}, text);
         const buttonDelete = `
-            <button style="float: right;" id="buttonDeleteKey" class="ml-2 mdc-button buttonDelete">
-                <span class="mdc-button__ripple" data-path="${path}"></span>
-                <i class="fa-solid fa-trash"></i>
+            <button data-path="${path}"
+                    class="buttonDelete py-2 px-3 rounded-md hover:bg-violet-200 active:bg-violet-300"
+                    style="float: right;"
+            >
+                <i class="text-violet-800 fa-solid fa-trash"></i>
             </button>
         `;
         
@@ -68,7 +70,9 @@ const SortableModule = () => {
                 filter: ".buttonDelete",
                 fallbackOnBody: true,
                 swapThreshold: 1,
-                onEnd: MyJSON.setJson(getJSObject())
+                onEnd: () => {
+                    MyJSON.setJson(getJSObject());
+                }
             });
         }
     }

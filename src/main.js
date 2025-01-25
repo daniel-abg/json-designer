@@ -7,8 +7,8 @@ initSortableEventListener();
 
 function initSortableEventListener() {
     document.querySelectorAll('.buttonDelete').forEach(icon => {
-        icon.addEventListener('click', function(e) {
-            deleteKey(e.target.attributes[1].value);
+        icon.addEventListener('click', (e) => {
+            deleteKey(e.currentTarget.getAttribute('data-path'));
         });
     })
 }
@@ -34,3 +34,5 @@ function deleteKey(selectedKey) {
     initSortableEventListener();
     pasteJsonToEditor();
 }
+
+export { pasteJsonToEditor };
