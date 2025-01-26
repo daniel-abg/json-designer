@@ -10,12 +10,19 @@ on:
       - '.github/**'
 
 jobs:
-  ftp-deploy:
-    name: Deploy via FTP
+  deploy:
+    name: Build and deploy
     runs-on: ubuntu-latest
     steps:
       - name: Get latest code
         uses: actions/checkout@v4
+
+      - name: Build and bundle files
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: npm run build
 
       - name: Transfer files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -23,3 +30,4 @@ jobs:
           server: ${{ secrets.FTP_ADDRESS }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: dist/
