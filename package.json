@@ -4,11 +4,16 @@
   "description": "A web application to model JSON data.",
   "scripts": {
     "dev:css": "npx tailwindcss -i src/custom.css -o src/style.css --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "npx tailwindcss -i src/custom.css -o dist/style.css --minify",
+    "build:js": "node esbuild.mjs",
+    "build": "npm run build:css && npm run build:js"
   },
   "author": "Daniel Abgottspon",
   "license": "UNLICENSED",
   "dependencies": {
+    "esbuild": "^0.24.2",
+    "esbuild-copy-files-plugin": "^1.2.1",
     "sortablejs": "^1.15.6",
     "tailwindcss": "^3.4.17"
   }
