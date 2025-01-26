@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A web application to model JSON data.",
   "scripts": {
+    "dev:css": "npx tailwindcss -i ./src/custom.css -o ./src/style.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Daniel Abgottspon",
