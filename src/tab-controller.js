@@ -41,12 +41,12 @@ class TabController extends HTMLElement {
                 <div name="tab1" class="tab active" >
                     <slot name="tab1"></slot>
                 </div>
-                <div name="tab2"class="tab">
+                <div name="tab2" class="tab">
                     <slot name="tab2"></slot>
                 </div>
             </div>
             
-            <slot id="tab1"class="tabcontent"name="tab1content"></slot>
+            <slot id="tab1"class="tabcontent" name="tab1content"></slot>
             <slot id="tab2" class="tabcontent hidden" name="tab2content"></slot>
         `;
     }
