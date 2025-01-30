@@ -1,7 +1,10 @@
+import { tailwindTransform } from "postcss-lit"
+
 export default exports = {
-    content: ["./src/**/*.{html,js}"],
-    theme: {
-        extend: {},
+    content: {
+        files: ['./src/*.js'],
+        transform: {
+            ts: tailwindTransform
+        }
     },
-    plugins: [],
 }
