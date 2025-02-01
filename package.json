@@ -6,9 +6,7 @@
     "css": "npx tailwindcss -i src/custom.css -o src/style.css --watch",
     "dev:css": "concurrently \"npx tailwindcss -i src/custom.css -o src/style.css --watch\" \"npx twlit --input ./src/style.css --output ./src/style.css.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:css": "npx tailwindcss -i src/custom.css -o dist/style.css --minify",
-    "build:js": "node esbuild.mjs",
-    "build": "npm run build:css && npm run build:js"
+    "build": "npx vite build"
   },
   "type": "module",
   "author": "Daniel Abgottspon",
