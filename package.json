@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "description": "A web application to model JSON data.",
   "scripts": {
-    "css": "npx tailwindcss -i src/custom.css -o src/style.css --watch",
-    "dev:css": "concurrently \"npx tailwindcss -i src/custom.css -o src/style.css --watch\" \"npx twlit --input ./src/style.css --output ./src/style.css.js\"",
+    "css:tw": "npx tailwindcss -i src/custom.css -o src/style.css --watch",
+    "css:lit": "npx twlit --input ./src/style.css --output ./src/style.css.js",
+    "dev:css": "concurrently \"npm run css:tw\" \"npm run css:lit\"",
+    "dev": "concurrently \"npm run dev:css\" \"npx vite\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx vite build"
+    "build": "npx vite build",
+    "start": "npx vite preview"
   },
   "type": "module",
   "author": "Daniel Abgottspon",
