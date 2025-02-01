@@ -1,5 +1,3 @@
-import { pasteJsonToEditor } from './main.js';
-
 class TabController extends HTMLElement {
     constructor() {
         super();
@@ -63,9 +61,6 @@ class TabController extends HTMLElement {
         this.shadowRoot.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
         tab.classList.add('active');
 
-        if(tab.getAttribute('name') === 'tab1') {
-            pasteJsonToEditor();
-        }
         
         this.shadowRoot.querySelectorAll('slot.tabcontent').forEach(slot => {           
             if (slot.id === tab.getAttribute('name')) {
