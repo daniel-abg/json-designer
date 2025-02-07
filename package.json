@@ -22,7 +22,7 @@
     "lit": "^3.2.1",
     "sortablejs": "^1.15.6",
     "tailwindcss": "^3.4.17",
-    "vite": "^6.0.11"
+    "vite": "^6.1.0"
   },
   "devDependencies": {
     "twlit": "^0.0.1-alpha.37"
