@@ -86,7 +86,6 @@ class JsonSortable extends LitElement {
                     this.updateJson(this.getJSObject());
                 }
             });
-            
         }
     }
 
@@ -157,7 +156,6 @@ class JsonSortable extends LitElement {
                 object = object[keys[i]];
             }
         }
-        console.log(object[keys[keys.length - 1]]);
         
         delete object[keys[keys.length - 1]];
         return this.json;

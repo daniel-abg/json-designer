@@ -79,8 +79,6 @@ class AppController extends LitElement {
                   @click=${() => {
                     const isDarkMode = document.documentElement.classList.toggle("dark");
                     localStorage.theme = isDarkMode ? "dark" : "light";
-                    console.log(isDarkMode);
-                    
                     this.isDarkMode = isDarkMode;
                   }}
                 >
