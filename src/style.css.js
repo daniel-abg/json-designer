@@ -811,13 +811,6 @@
       }
     }
   }
-  .hover\\:text-violet-200 {
-    &:hover {
-      @media (hover: hover) {
-        color: var(--color-violet-200);
-      }
-    }
-  }
   .focus\\:outline-hidden {
     &:focus {
       outline-style: none;
@@ -835,12 +828,6 @@
   .active\\:bg-violet-500 {
     &:active {
       background-color: var(--color-violet-500);
-    }
-  }
-  .dark\\:border-none {
-    &:where(.dark, .dark *) {
-      --tw-border-style: none;
-      border-style: none;
     }
   }
   .dark\\:border-white {
@@ -867,15 +854,6 @@
     &:where(.dark, .dark *) {
       &:hover {
         @media (hover: hover) {
-          border-color: var(--color-white);
-        }
-      }
-    }
-  }
-  .hover\\:dark\\:border-white {
-    &:hover {
-      @media (hover: hover) {
-        &:where(.dark, .dark *) {
           border-color: var(--color-white);
         }
       }
