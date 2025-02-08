@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "A web application to model JSON data.",
   "scripts": {
-    "css:tw": "npx tailwindcss -i src/custom.css -o src/style.css --watch",
+    "css:tw": "npx @tailwindcss/cli -i src/custom.css -o src/style.css --watch",
     "css:lit": "npx twlit --input ./src/style.css --output ./src/style.css.js",
     "dev:css": "concurrently \"npm run css:tw\" \"npm run css:lit\"",
     "dev": "concurrently \"npm run dev:css\" \"npx vite\"",
@@ -16,12 +16,13 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
+    "@tailwindcss/vite": "^4.0.4",
     "concurrently": "^9.1.2",
     "esbuild": "^0.24.2",
     "esbuild-copy-files-plugin": "^1.2.1",
     "lit": "^3.2.1",
     "sortablejs": "^1.15.6",
-    "tailwindcss": "^3.4.17",
+    "tailwindcss": "^4.0.4",
     "vite": "^6.1.0"
   },
   "devDependencies": {
