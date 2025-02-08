@@ -16,7 +16,7 @@ class TabController extends TWElement {
             <div id="tab-bar" class="flex mb-6">            
                 <div
                     class="
-                        tab cursor-pointer grow text-center p-3 text-violet-800
+                        cursor-pointer grow text-center p-3 text-violet-800
                         hover:bg-violet-200 active:bg-violet-300
                         dark:text-white dark:hover:bg-violet-700 dark:active:bg-violet-500
                         ${this.activeTab === 'tab1' ? 'border-b-2 border-violet-800 dark:border-white' : ''}
@@ -27,7 +27,7 @@ class TabController extends TWElement {
                 </div>
                 <div
                     class="
-                        tab cursor-pointer grow text-center p-3 text-violet-800
+                        cursor-pointer grow text-center p-3 text-violet-800
                         hover:bg-violet-200 active:bg-violet-300
                         dark:text-white dark:hover:bg-violet-700 dark:active:bg-violet-500
                         ${this.activeTab === 'tab2' ? 'border-b-2 border-violet-800 dark:border-white' : ''}
@@ -38,8 +38,8 @@ class TabController extends TWElement {
                 </div>
             </div>
             
-            <slot name="tab1content" class="tabcontent ${this.activeTab === 'tab1' ? '' : 'hidden'}"></slot>
-            <slot name="tab2content" class="tabcontent ${this.activeTab === 'tab2' ? '' : 'hidden'}"></slot>
+            <slot name="tab1content" class="${this.activeTab === 'tab1' ? '' : 'hidden'}"></slot>
+            <slot name="tab2content" class="${this.activeTab === 'tab2' ? '' : 'hidden'}"></slot>
         `;
     }
 
