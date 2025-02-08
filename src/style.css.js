@@ -1,6 +1,6 @@
 
     import { css } from "lit";
-    export const TWStyles = css` /*! tailwindcss v4.0.4 | MIT License | https://tailwindcss.com */
+    export const TWStyles = css` /*! tailwindcss v4.0.5 | MIT License | https://tailwindcss.com */
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
@@ -675,6 +675,10 @@
     border-style: var(--tw-border-style);
     border-width: 0px;
   }
+  .border-2 {
+    border-style: var(--tw-border-style);
+    border-width: 2px;
+  }
   .border-b-2 {
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 2px;
@@ -682,6 +686,10 @@
   .border-l {
     border-left-style: var(--tw-border-style);
     border-left-width: 1px;
+  }
+  .border-l-2 {
+    border-left-style: var(--tw-border-style);
+    border-left-width: 2px;
   }
   .border-gray-500 {
     border-color: var(--color-gray-500);
