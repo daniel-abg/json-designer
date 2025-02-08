@@ -9,12 +9,14 @@ class AppController extends LitElement {
     static styles = [TWStyles, FAStyles];
 
     static properties = {
-      space: { type: Number },
-      json: { type: Object },
+        isDarkMode: { type: Boolean },
+        space: { type: Number },
+        json: { type: Object },
     }
 
     constructor() {        
         super();
+        this.isDarkMode = document.documentElement.classList.contains("dark");
         this.space = 2;
         this.json = {
           "book": {
@@ -68,8 +70,22 @@ class AppController extends LitElement {
 
     render() {
         return html`
-            <header class="text-xl font-medium text-white bg-violet-800 p-5 pl-10">
+            <header class="flex items-center justify-between text-xl font-medium text-white bg-violet-800 p-3 px-10">
                 JSON Designer
+                <button 
+                  id="copyJSON" 
+                  class="w-11 text-white bg-violet-800 hover:bg-violet-700 active:bg-violet-500 py-2 px-3 rounded-md
+                  "
+                  @click=${() => {
+                    const isDarkMode = document.documentElement.classList.toggle("dark");
+                    localStorage.theme = isDarkMode ? "dark" : "light";
+                    console.log(isDarkMode);
+                    
+                    this.isDarkMode = isDarkMode;
+                  }}
+                >
+                    ${this.isDarkMode ? html`<i class="fa-solid fa-sun"></i>` : html`<i class="fa-solid fa-moon"></i>`}
+                </button>
             </header>
             
             <main class="max-w-5xl m-auto px-6 pb-6">
