@@ -12,10 +12,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <script type="module" src="src/app-controller.js"></script>
+    <script>
+        const userPrefersDark = localStorage.theme === "dark";
+        const userPrefersNothing = !("theme" in localStorage);
+        const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;        
+        const isDarkMode = userPrefersDark || (userPrefersNothing && systemPrefersDark)
+        document.documentElement.classList.toggle("dark", isDarkMode);
+    </script>
 </head>
 
 <body>
-    <app-controller></app-controller> 
+    <app-controller
+        class="block h-screen dark:bg-gray-800 dark:text-white"
+    ></app-controller> 
 </body>
 
 </html>
