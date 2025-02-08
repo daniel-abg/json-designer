@@ -18,7 +18,8 @@ class TabController extends TWElement {
                     class="
                         tab cursor-pointer grow text-center p-3 text-violet-800
                         hover:bg-violet-200 active:bg-violet-300
-                        ${this.activeTab === 'tab1' ? 'border-b-2 border-violet-800' : ''}
+                        dark:text-white dark:hover:bg-violet-700 dark:active:bg-violet-500
+                        ${this.activeTab === 'tab1' ? 'border-b-2 border-violet-800 dark:border-white' : ''}
                     "
                     @click="${() => this.setActiveTab('tab1')}"
                 >
@@ -28,7 +29,8 @@ class TabController extends TWElement {
                     class="
                         tab cursor-pointer grow text-center p-3 text-violet-800
                         hover:bg-violet-200 active:bg-violet-300
-                        ${this.activeTab === 'tab2' ? 'border-b-2 border-violet-800' : ''}
+                        dark:text-white dark:hover:bg-violet-700 dark:active:bg-violet-500
+                        ${this.activeTab === 'tab2' ? 'border-b-2 border-violet-800 dark:border-white' : ''}
                     "
                     @click="${() => this.setActiveTab('tab2')}"
                 >
