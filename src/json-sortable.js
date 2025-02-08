@@ -1,34 +1,9 @@
-import { LitElement, html, css } from "lit";
+import { html } from "lit";
 import { createHtmlElement } from './service.js';
 import Sortable from 'sortablejs';
-import { TWStyles } from "./style.css.js";
-import { FAStyles } from "./fontawesome.css.js";
+import TWElement from "./tw-element.js";
 
-class JsonSortable extends LitElement {
-    static styles = [TWStyles, FAStyles, css`
-        #nested-sortable {
-            border: 1px solid #999;
-            border-radius: 4px;
-            cursor: default;
-        }
-        .item {
-            padding: 10px 15px;
-            border-left: 1px solid #999;
-            border-radius: 4px;
-        }
-        .item:has(.item) {
-            border: 1px solid #999;
-        }
-        .item:hover {
-            border-color: #333;
-        }
-        // TODO: Ensure responsiveness
-        // @media (max-width: 750px) {
-        //     .item {
-        //         padding: 5px 7px;
-        //     }
-        // }
-    `];
+class JsonSortable extends TWElement {  
     static properties = {
         json: { type: Object },
     }
@@ -51,13 +26,13 @@ class JsonSortable extends LitElement {
 
     insertItem(parent, text, path) {
         // wrapper with padding to prevent problems with nested sortable https://jsfiddle.net/4qdmgduo/1/
-        const wrapper = createHtmlElement("div", ["pt-2"]);       
-        const item = createHtmlElement("div", ["item"], {path: path}, text);        
+        const wrapper = createHtmlElement("div", ["pt-2", "border-0"]);       
+        const item = createHtmlElement("div", ["item", "[&:has(.item)]:border", "cursor-default", "py-2.5", "px-3.5", "border-l", "rounded-md", "border-gray-500", "hover:border-gray-800", "dark:hover:border-white"], {path: path}, text);        
         const buttonDelete = createHtmlElement("button",
-            ["buttonDelete", "py-2", "px-3", "rounded-md", "hover:bg-violet-200", "active:bg-violet-300"],
+            ["buttonDelete", "py-2", "px-3", "rounded-md", "hover:bg-violet-200", "active:bg-violet-300", "dark:hover:bg-violet-700", "dark:active:bg-violet-500"],
             { style: "float: right;" }
         );
-        const iconDelete = createHtmlElement("i", ["fa-solid", "fa-trash", "text-violet-800"]);
+        const iconDelete = createHtmlElement("i", ["fa-solid", "fa-trash", "text-violet-800", "dark:text-white"]);
         buttonDelete.appendChild(iconDelete);
         buttonDelete.addEventListener("click", () => {
             const jsonNew = this.deleteKey(path);           
@@ -175,6 +150,7 @@ class JsonSortable extends LitElement {
     }
 
     firstUpdated() {
+        super.firstUpdated();
         this.init();
     }
 
@@ -182,7 +158,7 @@ class JsonSortable extends LitElement {
         return html`
             <div 
                 id="nested-sortable"
-                class="w-full item mb-6"
+                class="w-full item mb-6 pt-0.5 pb-2.5 px-3.5 rounded-md border border-gray-500 dark:bg-gray-700"
             ></div>
         `;
     }
