@@ -1,74 +1,48 @@
-class TabController extends HTMLElement {
+import { html } from 'lit';
+import TWElement from './tw-element.js';
+
+class TabController extends TWElement {
+    static properties = {
+        activeTab: { type: String }
+    };
+
     constructor() {
         super();
-        this.attachShadow({ mode: 'open'});        
-        this.shadowRoot.innerHTML = `
-            <style>
-                :host {
-                    --tw-violet-200: #ddd6fe;
-                    --tw-violet-300: #c4b5fd;
-                    --tw-violet-800: #5b21b6;
-                }
-                #tab-bar {
-                    display: flex;
-                    margin-bottom: 1.5rem;
-                }
-                .tab {
-                    display: flex;
-                    justify-content: center;
-                    color: var(--tw-violet-800);
-                    padding: 0.75rem;
-                    flex-grow: 1;
-                }
-                .tab:hover {
-                    background-color: var(--tw-violet-200);
-                    cursor: pointer;
-                }
-                .tab:active {
-                    background-color: var(--tw-violet-300);
-                }
-                .tab.active {
-                    border-bottom: 2px solid var(--tw-violet-800);
-                }
-                .hidden {
-                    display: none;
-                }
-            </style>
+        this.activeTab = 'tab1';
+    }
 
-            <div id="tab-bar">            
-                <div name="tab1" class="tab active" >
+    render() {
+        return html`
+            <div id="tab-bar" class="flex mb-6">            
+                <div
+                    class="
+                        tab cursor-pointer grow text-center p-3 text-violet-800
+                        hover:bg-violet-200 active:bg-violet-300
+                        ${this.activeTab === 'tab1' ? 'border-b-2 border-violet-800' : ''}
+                    "
+                    @click="${() => this.setActiveTab('tab1')}"
+                >
                     <slot name="tab1"></slot>
                 </div>
-                <div name="tab2" class="tab">
+                <div
+                    class="
+                        tab cursor-pointer grow text-center p-3 text-violet-800
+                        hover:bg-violet-200 active:bg-violet-300
+                        ${this.activeTab === 'tab2' ? 'border-b-2 border-violet-800' : ''}
+                    "
+                    @click="${() => this.setActiveTab('tab2')}"
+                >
                     <slot name="tab2"></slot>
                 </div>
             </div>
             
-            <slot id="tab1"class="tabcontent" name="tab1content"></slot>
-            <slot id="tab2" class="tabcontent hidden" name="tab2content"></slot>
+            <slot name="tab1content" class="tabcontent ${this.activeTab === 'tab1' ? '' : 'hidden'}"></slot>
+            <slot name="tab2content" class="tabcontent ${this.activeTab === 'tab2' ? '' : 'hidden'}"></slot>
         `;
     }
 
-    connectedCallback() {
-        this.shadowRoot.querySelectorAll('.tab').forEach(tab => {          
-            tab.addEventListener('click', this.onTabClick.bind(this));
-        });
-    }
-
-    onTabClick(event) {
-        const tab = event.currentTarget;
-
-        this.shadowRoot.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-        tab.classList.add('active');
-
-        
-        this.shadowRoot.querySelectorAll('slot.tabcontent').forEach(slot => {           
-            if (slot.id === tab.getAttribute('name')) {
-                slot.classList.remove('hidden');
-            } else {
-                slot.classList.add('hidden');
-            }
-        });
+    setActiveTab(tab) {
+        this.activeTab = tab;
     }
 }
 
