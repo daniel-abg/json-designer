@@ -72,17 +72,25 @@ class AppController extends LitElement {
         return html`
             <header class="flex items-center justify-between text-xl font-medium text-white bg-violet-800 p-3 px-10">
                 JSON Designer
-                <button 
-                  class="w-11 text-white bg-violet-800 hover:bg-violet-700 active:bg-violet-500 py-2 px-3 rounded-md
-                  "
-                  @click=${() => {
-                    const isDarkMode = document.documentElement.classList.toggle("dark");
-                    localStorage.theme = isDarkMode ? "dark" : "light";
-                    this.isDarkMode = isDarkMode;
-                  }}
-                >
-                    ${this.isDarkMode ? html`<i class="fa-solid fa-sun"></i>` : html`<i class="fa-solid fa-moon"></i>`}
-                </button>
+                <div class="flex gap-1">
+                    <a
+                        title="JSON Designer on GitHub"
+                        target="_blank"
+                        href="https://github.com/daniel-abg/json-designer"
+                        class="block w-11 text-white bg-violet-800 hover:bg-violet-700 active:bg-violet-500 py-2 px-3 rounded-md">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <button
+                        class="w-11 cursor-pointer text-white bg-violet-800 hover:bg-violet-700 active:bg-violet-500 py-2 px-3 rounded-md"
+                        @click=${() => {
+                            const isDarkMode = document.documentElement.classList.toggle("dark");
+                            localStorage.theme = isDarkMode ? "dark" : "light";
+                            this.isDarkMode = isDarkMode;
+                        }}
+                    >
+                        ${this.isDarkMode ? html`<i class="fa-solid fa-sun"></i>` : html`<i class="fa-solid fa-moon"></i>`}
+                    </button>
+                </div>
             </header>
             
             <main class="max-w-5xl m-auto px-6 pb-6">
