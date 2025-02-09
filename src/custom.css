@@ -2,7 +2,10 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+* {
+    font-family: 'Roboto', sans-serif
+}
+
 body{
     margin: 0;
-    font-family: Roboto, sans-serif;
 }
