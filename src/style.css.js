@@ -594,8 +594,17 @@
   .h-96 {
     height: calc(var(--spacing) * 96);
   }
+  .h-dvh {
+    height: 100dvh;
+  }
+  .h-full {
+    height: 100%;
+  }
   .h-screen {
     height: 100vh;
+  }
+  .min-h-dvh {
+    min-height: 100dvh;
   }
   .w-1 {
     width: calc(var(--spacing) * 1);
@@ -614,6 +623,9 @@
   }
   .w-7 {
     width: calc(var(--spacing) * 7);
+  }
+  .w-10 {
+    width: calc(var(--spacing) * 10);
   }
   .w-11 {
     width: calc(var(--spacing) * 11);
@@ -656,6 +668,9 @@
   }
   .justify-center {
     justify-content: center;
+  }
+  .gap-1 {
+    gap: calc(var(--spacing) * 1);
   }
   .space-x-2 {
     :where(& > :not(:last-child)) {
