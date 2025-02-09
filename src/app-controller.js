@@ -110,7 +110,7 @@ class AppController extends LitElement {
                 </tab-controller>
 
                 <button 
-                  class="text-white bg-violet-800 hover:bg-violet-700 active:bg-violet-500 py-2 px-3 rounded-md"
+                  class="cursor-pointer text-white bg-violet-800 hover:bg-violet-700 active:bg-violet-500 py-2 px-3 rounded-md"
                   @click=${this.copyJsonToClipboard}
                 >
                     <i class="fa-regular fa-copy mr-2"></i>

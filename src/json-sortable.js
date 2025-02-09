@@ -29,7 +29,7 @@ class JsonSortable extends TWElement {
         const wrapper = createHtmlElement("div", ["pt-2", "border-0"]);       
         const item = createHtmlElement("div", ["item", "[&:has(.item)]:border", "cursor-default", "py-2.5", "px-3.5", "border-l", "rounded-md", "border-gray-500", "hover:border-gray-800", "dark:hover:border-white"], {path: path}, text);        
         const buttonDelete = createHtmlElement("button",
-            ["buttonDelete", "py-2", "px-3", "rounded-md", "hover:bg-violet-200", "active:bg-violet-300", "dark:hover:bg-violet-700", "dark:active:bg-violet-500"],
+            ["buttonDelete", "cursor-pointer", "py-2", "px-3", "rounded-md", "hover:bg-violet-200", "active:bg-violet-300", "dark:hover:bg-violet-700", "dark:active:bg-violet-500"],
             { style: "float: right;" }
         );
         const iconDelete = createHtmlElement("i", ["fa-solid", "fa-trash", "text-violet-800", "dark:text-white"]);
