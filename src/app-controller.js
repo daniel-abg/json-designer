@@ -73,7 +73,6 @@ class AppController extends LitElement {
             <header class="flex items-center justify-between text-xl font-medium text-white bg-violet-800 p-3 px-10">
                 JSON Designer
                 <button 
-                  id="copyJSON" 
                   class="w-11 text-white bg-violet-800 hover:bg-violet-700 active:bg-violet-500 py-2 px-3 rounded-md
                   "
                   @click=${() => {
@@ -111,7 +110,6 @@ class AppController extends LitElement {
                 </tab-controller>
 
                 <button 
-                  id="copyJSON" 
                   class="text-white bg-violet-800 hover:bg-violet-700 active:bg-violet-500 py-2 px-3 rounded-md"
                   @click=${this.copyJsonToClipboard}
                 >

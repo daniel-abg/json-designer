@@ -13,7 +13,7 @@ class TabController extends TWElement {
 
     render() {
         return html`
-            <div id="tab-bar" class="flex mb-6">            
+            <div class="flex mb-6">            
                 <div
                     class="
                         cursor-pointer grow text-center p-3 text-violet-800
