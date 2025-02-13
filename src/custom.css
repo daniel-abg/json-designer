@@ -1,57 +1,11 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 * {
+    font-family: 'Roboto', sans-serif
+}
+
+body{
     margin: 0;
-    padding: 0;
-    font-family: Roboto, sans-serif;
 }
-
-main {
-    max-width: 1000px;
-    margin: auto;
-    margin-bottom: 25px;
-    padding-left: 25px;
-    padding-right: 25px;
-}
-
-.ver-align {
-    display: flex;
-    align-items: center;
-}
-
-/* textfield */
-.mdc-text-field--textarea {
-    height: 500px !important;
-    width: 100% !important;
-}
-
-/* sortable.js */
-#nested-sortable {
-    border: 1px solid #999;
-    border-radius: 4px;
-    cursor: default;
-}
-
-.item {
-    padding: 10px 15px;
-    border-left: 1px solid #999;
-    border-radius: 4px;
-}
-
-.item:has(.item) {
-    border: 1px solid #999;
-}
-
-.item:hover {
-    border-color: #333;
-}
-
-/* TODO: Ensure responsiveness
-@media (max-width: 750px) {
-    .item {
-        padding: 5px 7px;
-    }
-}
-*/
