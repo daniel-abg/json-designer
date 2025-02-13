@@ -3,18 +3,28 @@
   "version": "1.0.0",
   "description": "A web application to model JSON data.",
   "scripts": {
-    "dev:css": "npx tailwindcss -i src/custom.css -o src/style.css --watch",
+    "css:tw": "npx @tailwindcss/cli -i src/custom.css -o src/style.css --watch",
+    "css:lit": "npx twlit --input ./src/style.css --output ./src/style.css.js",
+    "dev:css": "concurrently \"npm run css:tw\" \"npm run css:lit\"",
+    "dev": "concurrently \"npm run dev:css\" \"npx vite\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:css": "npx tailwindcss -i src/custom.css -o dist/style.css --minify",
-    "build:js": "node esbuild.mjs",
-    "build": "npm run build:css && npm run build:js"
+    "build": "npx vite build",
+    "start": "npx vite preview"
   },
+  "type": "module",
   "author": "Daniel Abgottspon",
   "license": "UNLICENSED",
   "dependencies": {
-    "esbuild": "^0.24.2",
-    "esbuild-copy-files-plugin": "^1.2.1",
+    "@fontsource/roboto": "^5.1.1",
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "@tailwindcss/vite": "^4.0.6",
+    "concurrently": "^9.1.2",
+    "lit": "^3.2.1",
     "sortablejs": "^1.15.6",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^4.0.6",
+    "vite": "^6.1.0"
+  },
+  "devDependencies": {
+    "twlit": "^0.0.1-alpha.37"
   }
 }

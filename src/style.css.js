@@ -1,4 +1,6 @@
-/*! tailwindcss v4.0.6 | MIT License | https://tailwindcss.com */
+
+    import { css } from "lit";
+    export const TWStyles = css` /*! tailwindcss v4.0.6 | MIT License | https://tailwindcss.com */
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
@@ -659,7 +661,7 @@
   .px-3 {
     padding-inline: calc(var(--spacing) * 3);
   }
-  .px-3\.5 {
+  .px-3\\.5 {
     padding-inline: calc(var(--spacing) * 3.5);
   }
   .px-6 {
@@ -671,13 +673,13 @@
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
   }
-  .py-2\.5 {
+  .py-2\\.5 {
     padding-block: calc(var(--spacing) * 2.5);
   }
   .pt-0 {
     padding-top: calc(var(--spacing) * 0);
   }
-  .pt-0\.5 {
+  .pt-0\\.5 {
     padding-top: calc(var(--spacing) * 0.5);
   }
   .pt-2 {
@@ -686,7 +688,7 @@
   .pb-2 {
     padding-bottom: calc(var(--spacing) * 2);
   }
-  .pb-2\.5 {
+  .pb-2\\.5 {
     padding-bottom: calc(var(--spacing) * 2.5);
   }
   .pb-6 {
@@ -723,28 +725,28 @@
     --tw-ease: var(--ease-in-out);
     transition-timing-function: var(--ease-in-out);
   }
-  .hover\:border-gray-800 {
+  .hover\\:border-gray-800 {
     &:hover {
       @media (hover: hover) {
         border-color: var(--color-gray-800);
       }
     }
   }
-  .hover\:bg-violet-200 {
+  .hover\\:bg-violet-200 {
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-violet-200);
       }
     }
   }
-  .hover\:bg-violet-700 {
+  .hover\\:bg-violet-700 {
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-violet-700);
       }
     }
   }
-  .focus\:outline-hidden {
+  .focus\\:outline-hidden {
     &:focus {
       outline-style: none;
       @media (forced-colors: active) {
@@ -753,37 +755,37 @@
       }
     }
   }
-  .active\:bg-violet-300 {
+  .active\\:bg-violet-300 {
     &:active {
       background-color: var(--color-violet-300);
     }
   }
-  .active\:bg-violet-500 {
+  .active\\:bg-violet-500 {
     &:active {
       background-color: var(--color-violet-500);
     }
   }
-  .dark\:border-white {
+  .dark\\:border-white {
     &:where(.dark, .dark *) {
       border-color: var(--color-white);
     }
   }
-  .dark\:bg-gray-700 {
+  .dark\\:bg-gray-700 {
     &:where(.dark, .dark *) {
       background-color: var(--color-gray-700);
     }
   }
-  .dark\:bg-gray-800 {
+  .dark\\:bg-gray-800 {
     &:where(.dark, .dark *) {
       background-color: var(--color-gray-800);
     }
   }
-  .dark\:text-white {
+  .dark\\:text-white {
     &:where(.dark, .dark *) {
       color: var(--color-white);
     }
   }
-  .dark\:hover\:border-white {
+  .dark\\:hover\\:border-white {
     &:where(.dark, .dark *) {
       &:hover {
         @media (hover: hover) {
@@ -792,7 +794,7 @@
       }
     }
   }
-  .dark\:hover\:bg-violet-700 {
+  .dark\\:hover\\:bg-violet-700 {
     &:where(.dark, .dark *) {
       &:hover {
         @media (hover: hover) {
@@ -801,14 +803,14 @@
       }
     }
   }
-  .dark\:active\:bg-violet-500 {
+  .dark\\:active\\:bg-violet-500 {
     &:where(.dark, .dark *) {
       &:active {
         background-color: var(--color-violet-500);
       }
     }
   }
-  .\[\&\:has\(\.item\)\]\:border {
+  .\\[\\&\\:has\\(\\.item\\)\\]\\:border {
     &:has(.item) {
       border-style: var(--tw-border-style);
       border-width: 1px;
@@ -926,3 +928,5 @@ body {
   syntax: "*";
   inherits: false;
 }
+ `
+    
