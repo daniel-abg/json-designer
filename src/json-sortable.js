@@ -84,9 +84,9 @@ class JsonSortable extends TWElement {
     }
 
     getNewStructure(sortable, paths = [], path = '') {
-        let children = Array.from(sortable.children);
-        for (const c of children) {
-            let child = c.querySelector('.item');
+        const children = Array.from(sortable.children);
+        children.forEach(c => {
+            const child = c.querySelector('.item');
             let innerTextUntilNewline;
 
             if (child.innerText.includes("\n")) {
@@ -97,7 +97,7 @@ class JsonSortable extends TWElement {
 
             paths.push(path + innerTextUntilNewline);
             this.getNewStructure(child, paths, path + innerTextUntilNewline + '.');
-        }
+        });
         return paths;
     }
 
