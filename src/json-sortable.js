@@ -49,9 +49,8 @@ class JsonSortable extends TWElement {
 
     initSortable() {
         const nestedSortables = this.shadowRoot.querySelectorAll('.item')
-
-        for (let i = 0; i < nestedSortables.length; i++) {
-            const sortable = new Sortable(nestedSortables[i], {
+        nestedSortables.forEach(sortable => {
+            new Sortable(sortable, {
                 group: 'nested',
                 animation: 150,
                 filter: ".buttonDelete",
@@ -61,7 +60,7 @@ class JsonSortable extends TWElement {
                     this.updateJson(this.getJSObject());
                 }
             });
-        }
+        });
     }
 
     refreshSortable(json) {
