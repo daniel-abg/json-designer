@@ -102,16 +102,16 @@ class JsonSortable extends TWElement {
     }
 
     addKey(json, path) {
-        let keys = path.split(".");
+        const keys = path.split(".");
         let object = json;
         
-        for (let i = 0; i < keys.length - 1; i++) {
-            if (object[keys[i]] instanceof Array && object[keys[i]] !== null) {
-                object = object[keys[i]][0];
-            } else if (typeof object[keys[i]] === 'object' && object[keys[i]] !== null) {
-                object = object[keys[i]];
+        keys.forEach(key => {
+            if (object[key] instanceof Array && object[key] !== null) {
+                object = object[key][0];
+            } else if (typeof object[key] === 'object' && object[key] !== null) {
+                object = object[key];
             }
-        }
+        });
 
         object[keys.at(-1)] = {};
     }
