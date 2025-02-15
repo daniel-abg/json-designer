@@ -9,8 +9,7 @@ class JsonSortable extends TWElement {
     }
 
     init() {
-        const sortable = this.shadowRoot.getElementById('nested-sortable');              
-        this.generateHTML(this.json, sortable);
+        this.generateHTML(this.json, this.nestedSortable);
         this.initSortable();
     }
 
@@ -64,15 +63,13 @@ class JsonSortable extends TWElement {
     }
 
     refreshSortable(json) {
-        const sortable = this.shadowRoot.getElementById("nested-sortable");           
-        sortable.innerHTML = "";    
-        this.generateHTML(json, sortable);
+        this.nestedSortable.innerHTML = "";    
+        this.generateHTML(json, this.nestedSortable);
         this.initSortable();
     }
 
     getJSObject() {
-        const sortable = this.shadowRoot.getElementById('nested-sortable');
-        const structure = this.getNewStructure(sortable);
+        const structure = this.getNewStructure(this.nestedSortable);
         const json = {};
 
         for(let i = 0; i < structure.length; i++) {
@@ -150,12 +147,13 @@ class JsonSortable extends TWElement {
 
     firstUpdated() {
         super.firstUpdated();
+        this.nestedSortable = this.shadowRoot.getElementById('nested-sortable');
         this.init();
     }
 
     render() {
         return html`
-            <div 
+            <div
                 id="nested-sortable"
                 class="w-full item mb-6 pt-0.5 pb-2.5 px-3.5 rounded-md border border-gray-500 dark:bg-gray-700"
             ></div>
