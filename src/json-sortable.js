@@ -118,17 +118,8 @@ class JsonSortable extends TWElement {
 
     deleteKey(path) {
         const keys = path.split(".");
-        let object = this.json;        
-
-        keys.slice(0, -1).forEach(key => {
-            if (object[key] instanceof Array && object[key] !== null) {
-                object = object[key][0];
-            } else if (typeof object[key] === 'object' && object[key] !== null) {
-                object = object[key];
-            }
-        });
-        
-        delete object[keys[keys.length - 1]];
+        const object = keys.slice(0, -1).reduce((obj, key) => obj?.[key], this.json);
+        object && delete object[keys[keys.length - 1]];
         return this.json;
     }
 
