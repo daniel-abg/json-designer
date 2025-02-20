@@ -15,9 +15,11 @@ class JsonSortable extends TWElement {
 
     generateHTML(object, parentElement, path = '') {
         Object.entries(object).forEach(([key, value]) => {
-            let element = this.insertItem(parentElement, key, path + key);
-
-            if (typeof value === 'object' && object[key] !== null) {
+            const element = this.insertItem(parentElement, key, path + key);
+            
+            if (!value) return; // because of: typeof null === 'object'
+            
+            if (typeof value === 'object') {
                 this.generateHTML(value, element, path + key + '.');
             }
         });
