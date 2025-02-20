@@ -1,5 +1,4 @@
 import { html } from "lit";
-import { createHtmlElement } from './service.js';
 import Sortable from 'sortablejs';
 import TWElement from "./tw-element.js";
 
@@ -26,21 +25,28 @@ class JsonSortable extends TWElement {
     }
 
     insertItem(parent, text, path) {
-        // wrapper with padding to prevent problems with nested sortable https://jsfiddle.net/4qdmgduo/1/
-        const wrapper = createHtmlElement("div", ["pt-2", "border-0"]);       
-        const item = createHtmlElement("div", ["item", "[&:has(.item)]:border", "cursor-default", "py-2.5", "px-3.5", "border-l", "rounded-md", "border-gray-500", "hover:border-gray-800", "dark:hover:border-white"], {path: path}, text);        
-        const buttonDelete = createHtmlElement("button",
-            ["buttonDelete", "cursor-pointer", "py-2", "px-3", "rounded-md", "hover:bg-violet-200", "active:bg-violet-300", "dark:hover:bg-violet-700", "dark:active:bg-violet-500"],
-            { style: "float: right;" }
-        );
-        const iconDelete = createHtmlElement("i", ["fa-solid", "fa-trash", "text-violet-800", "dark:text-white"]);
+        // wrapper with padding to prevent problems with nested sortable: https://jsfiddle.net/4qdmgduo/1/
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("pt-2", "border-0");
+
+        const item = document.createElement("div");
+        item.classList.add("item", "[&:has(.item)]:border", "cursor-default", "py-2.5", "px-3.5", "border-l", "rounded-md", "border-gray-500", "hover:border-gray-800", "dark:hover:border-white");
+        item.setAttribute("path", path);
+        item.innerText = text;
+
+        const iconDelete = document.createElement("i");
+        iconDelete.classList.add("fa-solid", "fa-trash", "text-violet-800", "dark:text-white");
+
+        const buttonDelete = document.createElement("button");
+        buttonDelete.classList.add("buttonDelete", "cursor-pointer", "py-2", "px-3", "rounded-md", "hover:bg-violet-200", "active:bg-violet-300", "dark:hover:bg-violet-700", "dark:active:bg-violet-500");
+        buttonDelete.style.float = "right";
         buttonDelete.appendChild(iconDelete);
         buttonDelete.addEventListener("click", () => {
-            const jsonNew = this.deleteKey(path);           
+            const jsonNew = this.deleteKey(path);
             this.updateJson(jsonNew);
             this.refreshSortable(jsonNew);
         });
-    
+
         wrapper.appendChild(buttonDelete);
         wrapper.appendChild(item);
         parent.appendChild(wrapper);
