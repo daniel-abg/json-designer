@@ -25,7 +25,8 @@ class JsonSortable extends TWElement {
     }
 
     insertItem(parent, text, path) {
-        // wrapper with padding to prevent problems with nested sortable: https://jsfiddle.net/4qdmgduo/1/
+        // A wrapper with padding is required to allow moving an item 
+        // between two groups: https://jsfiddle.net/4qdmgduo/1/
         const wrapper = document.createElement("div");
         wrapper.classList.add("pt-2", "border-0");
 
