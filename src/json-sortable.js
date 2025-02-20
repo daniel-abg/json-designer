@@ -40,15 +40,14 @@ class JsonSortable extends TWElement {
         const buttonDelete = document.createElement("button");
         buttonDelete.classList.add("buttonDelete", "cursor-pointer", "py-2", "px-3", "rounded-md", "hover:bg-violet-200", "active:bg-violet-300", "dark:hover:bg-violet-700", "dark:active:bg-violet-500");
         buttonDelete.style.float = "right"; // No better solution with flexbox was found yet
-        buttonDelete.appendChild(iconDelete);
         buttonDelete.addEventListener("click", () => {
             const jsonNew = this.deleteKey(path);
             this.updateJson(jsonNew);
             this.refreshSortable(jsonNew);
         });
 
-        wrapper.appendChild(buttonDelete);
-        wrapper.appendChild(item);
+        buttonDelete.appendChild(iconDelete);
+        wrapper.append(buttonDelete, item);
         parent.appendChild(wrapper);
         
         return item;
