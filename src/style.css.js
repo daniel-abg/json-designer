@@ -1,6 +1,6 @@
 
     import { css } from "lit";
-    export const TWStyles = css` /*! tailwindcss v4.0.6 | MIT License | https://tailwindcss.com */
+    export const TWStyles = css` /*! tailwindcss v4.0.7 | MIT License | https://tailwindcss.com */
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
@@ -921,6 +921,10 @@ body {
   inherits: false;
 }
 @property --tw-sepia {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-drop-shadow {
   syntax: "*";
   inherits: false;
 }
