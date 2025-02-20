@@ -79,11 +79,7 @@ class JsonSortable extends TWElement {
 
     getJSObject() {
         const structure = this.getNewStructure(this.nestedSortable);
-        const json = {};
-
-        for(let i = 0; i < structure.length; i++) {
-            this.addKey(json, structure[i]);
-        }
+        const json = structure.reduce((json, key) => this.addKey(json, key), {});
         return json;
     }
 
@@ -123,6 +119,7 @@ class JsonSortable extends TWElement {
         });
 
         object[keys.at(-1)] = {};
+        return json;
     }
 
     deleteKey(path) {
