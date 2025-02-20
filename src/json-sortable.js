@@ -31,7 +31,6 @@ class JsonSortable extends TWElement {
 
         const item = document.createElement("div");
         item.classList.add("item", "[&:has(.item)]:border", "cursor-default", "py-2.5", "px-3.5", "border-l", "rounded-md", "border-gray-500", "hover:border-gray-800", "dark:hover:border-white");
-        item.setAttribute("path", path);
         item.innerText = text;
 
         const iconDelete = document.createElement("i");
