@@ -111,10 +111,14 @@ class JsonSortable extends TWElement {
         let object = json;
         
         keys.forEach(key => {
-            if (object[key] instanceof Array && object[key] !== null) {
-                object = object[key][0];
-            } else if (typeof object[key] === 'object' && object[key] !== null) {
-                object = object[key];
+            const value = object[key];
+
+            if(!value) return; // because of: typeof null === 'object'
+
+            if (value instanceof Array) {
+                object = value[0];
+            } else if (typeof value === 'object') {
+                object = value;
             }
         });
 
