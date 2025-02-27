@@ -1,6 +1,6 @@
 import { html } from "lit";
-import Sortable from 'sortablejs';
 import TWElement from "./tw-element.js";
+import Sortable from 'sortablejs';
 
 class JsonSortable extends TWElement {  
     static properties = {
