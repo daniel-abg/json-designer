@@ -1,13 +1,11 @@
-import { LitElement, html } from "lit";
+import { html } from "lit";
+import TWElement from "./tw-element.js";
 import './tab-controller.js';
 import './json-textfield.js';
 import './json-sortable.js';
-import { TWStyles } from './style.css.js';
-import { FAStyles } from "./fontawesome.css.js";
 
-class AppController extends LitElement {
-    static styles = [TWStyles, FAStyles];
 
+class AppController extends TWElement {
     static properties = {
         isDarkMode: { type: Boolean },
         space: { type: Number },
