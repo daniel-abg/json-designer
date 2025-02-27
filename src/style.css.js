@@ -2123,12 +2123,6 @@
     --tw-outline-style: solid;
     outline-style: solid;
   }
-  .\\[vite\\:css\\] {
-    vite: css;
-  }
-  .\\[vite\\:html\\] {
-    vite: html;
-  }
   .backface-hidden {
     backface-visibility: hidden;
   }
