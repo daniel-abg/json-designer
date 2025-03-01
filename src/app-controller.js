@@ -54,10 +54,11 @@ class AppController extends TWElement {
         });
     }
 
-    setJson(json) {
-        this.json = structuredClone(json);
-        this.jsonTextField.json = this.json;
-        
+    connectedCallback() {
+        super.connectedCallback();
+        this.addEventListener('json-changed', (event) => {
+            this._provider.setValue(event.detail);            
+        });
     }
 
     copyJsonToClipboard() {
@@ -105,9 +106,7 @@ class AppController extends TWElement {
                         <json-textfield></json-textfield>
                     </span>
                     <span slot="tab2content">
-                        <json-sortable
-                          @json-changed=${e => this._provider.setValue(e.detail)}
-                        ></json-sortable>
+                        <json-sortable></json-sortable>
                     </span>
                 </tab-controller>
 

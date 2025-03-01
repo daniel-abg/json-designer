@@ -1,6 +1,6 @@
 import { html } from "lit";
 import { ContextConsumer } from '@lit/context';
-import { jsonDesignerContext } from "./context.js";
+import { jsonDesignerContext, updateJson } from "./context.js";
 import TWElement from "./tw-element.js";
 import Sortable from 'sortablejs';
 
@@ -48,7 +48,7 @@ class JsonSortable extends TWElement {
         buttonDelete.style.float = "right"; // No better solution with flexbox was found yet
         buttonDelete.addEventListener("click", () => {
             const jsonNew = this.deleteKey(path);
-            this.updateJson(jsonNew);
+            updateJson(this, jsonNew);
             this.refreshSortable(jsonNew);
         });
 
@@ -70,7 +70,7 @@ class JsonSortable extends TWElement {
                 swapThreshold: 1,
                 onEnd: () => {
                     const jsonNew = this.getJSObject();                   
-                    this.updateJson(jsonNew);
+                    updateJson(this, jsonNew);
                     this.refreshSortable(jsonNew);
                 }
             });
@@ -87,11 +87,6 @@ class JsonSortable extends TWElement {
         const structure = this.getNewStructure(this.nestedSortable);
         const json = structure.reduce((json, key) => this.addKey(json, key), {});
         return json;
-    }
-
-    updateJson(jsonNew) {
-        const event = new CustomEvent('json-changed', { detail: jsonNew });
-        this.dispatchEvent(event);
     }
 
     getNewStructure(sortable, paths = [], path = '') {
