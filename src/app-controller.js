@@ -1,5 +1,7 @@
 import { html } from "lit";
 import TWElement from "./tw-element.js";
+import { ContextProvider } from '@lit/context';
+import { jsonDesignerContext } from './context.js';
 import './tab-controller.js';
 import './json-textfield.js';
 import './json-sortable.js';
@@ -9,14 +11,13 @@ class AppController extends TWElement {
     static properties = {
         isDarkMode: { type: Boolean },
         space: { type: Number },
-        json: { type: Object },
     }
 
     constructor() {        
         super();
         this.isDarkMode = document.documentElement.classList.contains("dark");
         this.space = 2;
-        this.json = {
+        const json = {
           "book": {
               "title": "The Great Gatsby",
               "author": {
@@ -46,10 +47,11 @@ class AppController extends TWElement {
               "published": 1925
           }
       };
-    }
 
-    getJson(space) {
-        return JSON.stringify(this.json, null, space);
+        this._provider = new ContextProvider(this, {
+            context: jsonDesignerContext,
+            initialValue: json,
+        });
     }
 
     setJson(json) {
@@ -59,11 +61,8 @@ class AppController extends TWElement {
     }
 
     copyJsonToClipboard() {
-        navigator.clipboard.writeText(this.getJson(this.space));
-    }
-
-    firstUpdated() {
-        this.jsonTextField = this.shadowRoot.querySelector('json-textfield');
+        const jsonStringified = JSON.stringify(this._provider.value, null, this.space);
+        navigator.clipboard.writeText(jsonStringified);
     }
 
     render() {
@@ -103,14 +102,11 @@ class AppController extends TWElement {
                     </span>
 
                     <span slot="tab1content">
-                        <json-textfield
-                            .json=${this.json}                            
-                        ></json-textfield>
+                        <json-textfield></json-textfield>
                     </span>
                     <span slot="tab2content">
                         <json-sortable
-                          .json=${this.json}
-                          @json-changed=${e => this.setJson(e.detail)}
+                          @json-changed=${e => this._provider.setValue(e.detail)}
                         ></json-sortable>
                     </span>
                 </tab-controller>
