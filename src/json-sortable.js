@@ -4,17 +4,14 @@ import { jsonContext, updateJson } from "./context.js";
 import TWElement from "./tw-element.js";
 import Sortable from 'sortablejs';
 
-class JsonSortable extends TWElement {  
-    constructor() {
-        super();
-        this._consumer = new ContextConsumer(this, {
-            context: jsonContext,
-            subscribe: true,
-        });
-    }
+class JsonSortable extends TWElement {
+    _jsonContextConsumer = new ContextConsumer(this, {
+        context: jsonContext,
+        subscribe: true,
+    });
 
     init() {
-        this.generateHTML(this._consumer.value, this.nestedSortable);
+        this.generateHTML(this._jsonContextConsumer.value, this.nestedSortable);
         this.initSortable();
     }
 
@@ -129,9 +126,9 @@ class JsonSortable extends TWElement {
 
     deleteKey(path) {
         const keys = path.split(".");
-        const object = keys.slice(0, -1).reduce((obj, key) => obj?.[key], this._consumer.value);
+        const object = keys.slice(0, -1).reduce((obj, key) => obj?.[key], this._jsonContextConsumer.value);
         object && delete object[keys[keys.length - 1]];
-        return this._consumer.value;
+        return this._jsonContextConsumer.value;
     }
 
     getAllKeyPaths = (object = json, paths = [], path = "") => {

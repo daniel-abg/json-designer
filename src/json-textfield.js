@@ -4,13 +4,10 @@ import { jsonContext } from "./context.js";
 import TWElement from "./tw-element.js";
 
 class JsonTextField extends TWElement {
-    constructor() {
-        super();
-        this._consumer = new ContextConsumer(this, {
-            context: jsonContext,
-            subscribe: true,
-        });
-    }
+    _jsonContextConsumer = new ContextConsumer(this, {
+        context: jsonContext,
+        subscribe: true,
+    });
 
     render() {       
         return html`
@@ -21,7 +18,7 @@ class JsonTextField extends TWElement {
                     border-gray-500 hover:border-gray-800 focus:outline-hidden 
                     dark:bg-gray-700 dark:text-white dark:hover:border-white
                 "
-                .value=${JSON.stringify(this._consumer.value, null, 2)}
+                .value=${JSON.stringify(this._jsonContextConsumer.value, null, 2)}
             ></textarea>
         `;
     }

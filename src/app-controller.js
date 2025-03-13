@@ -9,6 +9,11 @@ import './json-sortable.js';
 
 
 class AppController extends TWElement {
+    _jsonContextProvider = new ContextProvider(this, {
+        context: jsonContext,
+        initialValue: json,
+    });
+
     static properties = {
         isDarkMode: { type: Boolean },
         space: { type: Number },
@@ -18,17 +23,12 @@ class AppController extends TWElement {
         super();
         this.isDarkMode = document.documentElement.classList.contains("dark");
         this.space = 2;
-
-        this._provider = new ContextProvider(this, {
-            context: jsonContext,
-            initialValue: json,
-        });
     }
 
     connectedCallback() {
         super.connectedCallback();
         this.addEventListener('json-changed', (event) => {
-            this._provider.setValue(event.detail);            
+            this._jsonContextProvider.setValue(event.detail);            
         });
     }
 
