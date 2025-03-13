@@ -1,6 +1,6 @@
 
     import { css } from "lit";
-    export const TWStyles = css` /*! tailwindcss v4.0.9 | MIT License | https://tailwindcss.com */
+    export const TWStyles = css` /*! tailwindcss v4.0.14 | MIT License | https://tailwindcss.com */
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
@@ -520,9 +520,6 @@
   }
 }
 @layer utilities {
-  .\\@container {
-    container-type: inline-size;
-  }
   .pointer-events-auto {
     pointer-events: auto;
   }
@@ -558,9 +555,6 @@
     overflow: visible;
     clip: auto;
     white-space: normal;
-  }
-  .\\!relative {
-    position: relative !important;
   }
   .absolute {
     position: absolute;
@@ -1924,6 +1918,7 @@
     --tw-inset-shadow-color: initial;
   }
   .outline-hidden {
+    --tw-outline-style: none;
     outline-style: none;
     @media (forced-colors: active) {
       outline: 2px solid transparent;
@@ -1961,9 +1956,6 @@
   .sepia {
     --tw-sepia: sepia(100%);
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
-  }
-  .\\!filter {
-    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,) !important;
   }
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
@@ -2217,6 +2209,7 @@
   }
   .focus\\:outline-hidden {
     &:focus {
+      --tw-outline-style: none;
       outline-style: none;
       @media (forced-colors: active) {
         outline: 2px solid transparent;
