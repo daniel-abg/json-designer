@@ -9,7 +9,7 @@ class JsonTextField extends TWElement {
         subscribe: true,
     });
 
-    render() {       
+    render() {
         return html`
             <textarea
                 aria-label="JSON Textarea"

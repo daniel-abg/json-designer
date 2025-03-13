@@ -66,7 +66,7 @@ class JsonSortable extends TWElement {
                 fallbackOnBody: true,
                 swapThreshold: 1,
                 onEnd: () => {
-                    const jsonNew = this.getJSObject();                   
+                    const jsonNew = this.getJSObject();
                     updateJson(this, jsonNew);
                     this.refreshSortable(jsonNew);
                 }
