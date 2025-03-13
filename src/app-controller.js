@@ -1,6 +1,7 @@
 import { html } from "lit";
 import TWElement from "./tw-element.js";
 import { ContextProvider } from '@lit/context';
+import { jsonContext } from './context.js';
 import { json } from './json-data.js';
 import './tab-controller.js';
 import './json-textfield.js';
@@ -19,7 +20,7 @@ class AppController extends TWElement {
         this.space = 2;
 
         this._provider = new ContextProvider(this, {
-            context: jsonDesignerContext,
+            context: jsonContext,
             initialValue: json,
         });
     }

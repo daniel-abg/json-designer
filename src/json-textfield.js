@@ -1,13 +1,13 @@
 import { html } from "lit";
 import { ContextConsumer } from '@lit/context';
-import { jsonDesignerContext } from "./context.js";
+import { jsonContext } from "./context.js";
 import TWElement from "./tw-element.js";
 
 class JsonTextField extends TWElement {
     constructor() {
         super();
         this._consumer = new ContextConsumer(this, {
-            context: jsonDesignerContext,
+            context: jsonContext,
             subscribe: true,
         });
     }

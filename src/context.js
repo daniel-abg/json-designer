@@ -1,6 +1,6 @@
 import { createContext } from '@lit/context';
 
-const jsonDesignerContext = createContext(Symbol('json-designer-context'));
+const jsonContext = createContext(Symbol('json-context'));
 
 const updateJson = (component, jsonNew) => {
     const event = new CustomEvent('json-changed', { 
@@ -11,4 +11,4 @@ const updateJson = (component, jsonNew) => {
     component.dispatchEvent(event);   
 }
 
-export { jsonDesignerContext, updateJson };
+export { jsonContext, updateJson };

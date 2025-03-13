@@ -1,6 +1,6 @@
 import { html } from "lit";
 import { ContextConsumer } from '@lit/context';
-import { jsonDesignerContext, updateJson } from "./context.js";
+import { jsonContext, updateJson } from "./context.js";
 import TWElement from "./tw-element.js";
 import Sortable from 'sortablejs';
 
@@ -8,7 +8,7 @@ class JsonSortable extends TWElement {
     constructor() {
         super();
         this._consumer = new ContextConsumer(this, {
-            context: jsonDesignerContext,
+            context: jsonContext,
             subscribe: true,
         });
     }
