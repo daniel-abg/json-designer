@@ -1,7 +1,7 @@
 import { html } from "lit";
 import TWElement from "./tw-element.js";
 import { ContextProvider } from '@lit/context';
-import { jsonDesignerContext } from './context.js';
+import { json } from './json-data.js';
 import './tab-controller.js';
 import './json-textfield.js';
 import './json-sortable.js';
@@ -17,37 +17,6 @@ class AppController extends TWElement {
         super();
         this.isDarkMode = document.documentElement.classList.contains("dark");
         this.space = 2;
-        const json = {
-            "book": {
-                "title": "The Great Gatsby",
-                "author": {
-                    "firstname": "Francis Scott",
-                    "lastname": "Fitzgerald",
-                    // "family": [
-                    //     {
-                    //         "person": "Zelda Sayre",
-                    //         "type": "wife",
-                    //         "anotherArray": [
-                    //             {
-                    //                 "anotherKey": "anotherValue1"
-                    //             },
-                    //             {
-                    //                 "anotherKey": "anotherValue2"
-                    //             }
-                    //         ]
-                    //     },
-                    //     {
-                    //         "person": "Frances Scott",
-                    //         "type": "daughter",
-                    //         "anotherArray": []
-                    //     }
-                    // ],
-                  "born": 1896,
-                  "died": 1940
-                },
-            "published": 1925
-            }
-        };
 
         this._provider = new ContextProvider(this, {
             context: jsonDesignerContext,
