@@ -15,15 +15,16 @@
   "author": "Daniel Abgottspon",
   "license": "UNLICENSED",
   "dependencies": {
-    "@fontsource/roboto": "^5.1.1",
+    "@fontsource/roboto": "^5.2.5",
     "@fortawesome/fontawesome-free": "^6.7.2",
-    "@tailwindcss/cli": "^4.0.9",
-    "@tailwindcss/vite": "^4.0.9",
+    "@lit/context": "^1.1.4",
+    "@tailwindcss/cli": "^4.0.14",
+    "@tailwindcss/vite": "^4.0.14",
     "concurrently": "^9.1.2",
     "lit": "^3.2.1",
     "sortablejs": "^1.15.6",
-    "tailwindcss": "^4.0.9",
-    "vite": "^6.2.0"
+    "tailwindcss": "^4.0.14",
+    "vite": "^6.2.2"
   },
   "devDependencies": {
     "twlit": "^0.0.1-alpha.37"
