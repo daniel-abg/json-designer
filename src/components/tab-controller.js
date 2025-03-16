@@ -3,7 +3,7 @@ import TWElement from './tw-element.js';
 
 class TabController extends TWElement {
     static properties = {
-        activeTab: { type: String }
+        activeTab: { type: String },
     };
 
     constructor() {
@@ -13,7 +13,7 @@ class TabController extends TWElement {
 
     render() {
         return html`
-            <div class="flex mb-6">            
+            <div class="flex mb-6">
                 <div
                     class="
                         cursor-pointer grow text-center p-3 text-violet-800
@@ -37,7 +37,7 @@ class TabController extends TWElement {
                     <slot name="tab2"></slot>
                 </div>
             </div>
-            
+
             <slot name="tab1content" class="${this.activeTab === 'tab1' ? '' : 'hidden'}"></slot>
             <slot name="tab2content" class="${this.activeTab === 'tab2' ? '' : 'hidden'}"></slot>
         `;

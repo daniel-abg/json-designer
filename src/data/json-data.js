@@ -1,9 +1,9 @@
 export const json = {
-    "book": {
-        "title": "The Great Gatsby",
-        "author": {
-            "firstname": "Francis Scott",
-            "lastname": "Fitzgerald",
+    book: {
+        title: 'The Great Gatsby',
+        author: {
+            firstname: 'Francis Scott',
+            lastname: 'Fitzgerald',
             // "family": [
             //     {
             //         "person": "Zelda Sayre",
@@ -23,9 +23,9 @@ export const json = {
             //         "anotherArray": []
             //     }
             // ],
-            "born": 1896,
-            "died": 1940
+            born: 1896,
+            died: 1940,
         },
-    "published": 1925
-    }
+        published: 1925,
+    },
 };
