@@ -1,6 +1,6 @@
 import { html } from 'lit';
 import { ContextConsumer } from '@lit/context';
-import { jsonContext } from './context.js';
+import { jsonContext } from '../context/context.js';
 import TWElement from './tw-element.js';
 
 class JsonTextField extends TWElement {

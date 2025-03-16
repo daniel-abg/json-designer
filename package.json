@@ -1,36 +1,36 @@
 {
-  "name": "json-designer",
-  "version": "1.0.0",
-  "description": "A web application to model JSON data.",
-  "scripts": {
-    "css:tw": "npx @tailwindcss/cli -i src/custom.css -o src/style.css --watch",
-    "css:lit": "npx twlit --input ./src/style.css --output ./src/style.css.js",
-    "dev:css": "concurrently \"npm run css:tw\" \"npm run css:lit\"",
-    "dev": "concurrently \"npm run dev:css\" \"npx vite\"",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx vite build",
-    "start": "npx vite preview"
-  },
-  "type": "module",
-  "author": "Daniel Abgottspon",
-  "license": "UNLICENSED",
-  "dependencies": {
-    "@fontsource/roboto": "^5.2.5",
-    "@fortawesome/fontawesome-free": "^6.7.2",
-    "@lit/context": "^1.1.4",
-    "@tailwindcss/cli": "^4.0.14",
-    "@tailwindcss/vite": "^4.0.14",
-    "concurrently": "^9.1.2",
-    "lit": "^3.2.1",
-    "sortablejs": "^1.15.6",
-    "tailwindcss": "^4.0.14",
-    "vite": "^6.2.2"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.22.0",
-    "eslint": "^9.22.0",
-    "globals": "^16.0.0",
-    "prettier": "3.5.3",
-    "twlit": "^0.0.1-alpha.37"
-  }
+    "name": "json-designer",
+    "version": "1.0.0",
+    "description": "A web application to model JSON data.",
+    "scripts": {
+        "css:tw": "npx @tailwindcss/cli -i src/styles/custom.css -o src/styles/style.css --watch",
+        "css:lit": "npx twlit --input ./src/styles/style.css --output ./src/styles/style.css.js",
+        "dev:css": "concurrently \"npm run css:tw\" \"npm run css:lit\"",
+        "dev": "concurrently \"npm run dev:css\" \"npx vite\"",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "npx vite build",
+        "start": "npx vite preview"
+    },
+    "type": "module",
+    "author": "Daniel Abgottspon",
+    "license": "UNLICENSED",
+    "dependencies": {
+        "@fontsource/roboto": "^5.2.5",
+        "@fortawesome/fontawesome-free": "^6.7.2",
+        "@lit/context": "^1.1.4",
+        "@tailwindcss/cli": "^4.0.14",
+        "@tailwindcss/vite": "^4.0.14",
+        "concurrently": "^9.1.2",
+        "lit": "^3.2.1",
+        "sortablejs": "^1.15.6",
+        "tailwindcss": "^4.0.14",
+        "vite": "^6.2.2"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.22.0",
+        "eslint": "^9.22.0",
+        "globals": "^16.0.0",
+        "prettier": "3.5.3",
+        "twlit": "^0.0.1-alpha.37"
+    }
 }

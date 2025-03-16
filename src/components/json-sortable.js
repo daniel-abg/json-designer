@@ -1,6 +1,6 @@
 import { html } from 'lit';
 import { ContextConsumer } from '@lit/context';
-import { jsonContext, updateJson } from './context.js';
+import { jsonContext, updateJson } from '../context/context.js';
 import TWElement from './tw-element.js';
 import Sortable from 'sortablejs';
 

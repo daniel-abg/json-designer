@@ -1,6 +1,6 @@
 import { LitElement } from 'lit';
-import { TWStyles } from './style.css.js';
-import { FAStyles } from './fontawesome.css.js';
+import { TWStyles } from '../styles/style.css.js';
+import { FAStyles } from '../styles/fontawesome.css.js';
 
 class TWElement extends LitElement {
     static styles = [TWStyles, FAStyles];
