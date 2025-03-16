@@ -1,71 +1,40 @@
-import { LitElement, html } from "lit";
+import { html } from "lit";
+import TWElement from "./tw-element.js";
+import { ContextProvider } from '@lit/context';
+import { jsonContext } from './context.js';
+import { json } from './json-data.js';
 import './tab-controller.js';
 import './json-textfield.js';
 import './json-sortable.js';
-import { TWStyles } from './style.css.js';
-import { FAStyles } from "./fontawesome.css.js";
 
-class AppController extends LitElement {
-    static styles = [TWStyles, FAStyles];
+
+class AppController extends TWElement {
+    _jsonContextProvider = new ContextProvider(this, {
+        context: jsonContext,
+        initialValue: json,
+    });
 
     static properties = {
         isDarkMode: { type: Boolean },
         space: { type: Number },
-        json: { type: Object },
     }
 
     constructor() {        
         super();
         this.isDarkMode = document.documentElement.classList.contains("dark");
         this.space = 2;
-        this.json = {
-          "book": {
-              "title": "The Great Gatsby",
-              "author": {
-                  "firstname": "Francis Scott",
-                  "lastname": "Fitzgerald",
-                  /*"family": [
-                      {
-                          "person": "Zelda Sayre",
-                          "type": "wife",
-                          "anotherArray": [
-                              {
-                                  "anotherKey": "anotherValue1"
-                              }, {
-                                  "anotherKey": "anotherValue2"
-                              }
-                          ]
-                      },
-                      {
-                          "person": "Frances Scott",
-                          "type": "daughter",
-                          "anotherArray": []
-                      }
-                  ],*/
-                  "born": 1896,
-                  "died": 1940
-              },
-              "published": 1925
-          }
-      };
     }
 
-    getJson(space) {
-        return JSON.stringify(this.json, null, space);
-    }
-
-    setJson(json) {
-        this.json = structuredClone(json);
-        this.jsonTextField.json = this.json;
-        
+    connectedCallback() {
+        super.connectedCallback();
+        this.addEventListener('json-changed', (event) => {
+            this._jsonContextProvider.setValue({ ...event.detail });            
+        });
     }
 
     copyJsonToClipboard() {
-        navigator.clipboard.writeText(this.getJson(this.space));
-    }
-
-    firstUpdated() {
-        this.jsonTextField = this.shadowRoot.querySelector('json-textfield');
+        const jsonStringified = JSON.stringify(this._jsonContextProvider.value, null, this.space);
+        navigator.clipboard.writeText(jsonStringified);
     }
 
     render() {
@@ -105,15 +74,10 @@ class AppController extends LitElement {
                     </span>
 
                     <span slot="tab1content">
-                        <json-textfield
-                            .json=${this.json}                            
-                        ></json-textfield>
+                        <json-textfield></json-textfield>
                     </span>
                     <span slot="tab2content">
-                        <json-sortable
-                          .json=${this.json}
-                          @json-changed=${e => this.setJson(e.detail)}
-                        ></json-sortable>
+                        <json-sortable></json-sortable>
                     </span>
                 </tab-controller>
 
