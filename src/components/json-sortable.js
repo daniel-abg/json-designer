@@ -17,7 +17,7 @@ class JsonSortable extends TWElement {
 
     generateHTML(object, parentElement, path = '') {
         Object.entries(object).forEach(([key, value]) => {
-            const element = this.insertItem(parentElement, key, path + key);
+            const element = this.insertItem(parentElement, path + key, key, value);
 
             if (!value) return; // because of: typeof null === 'object'
 
@@ -27,7 +27,7 @@ class JsonSortable extends TWElement {
         });
     }
 
-    insertItem(parent, text, path) {
+    insertItem(parent, path, key, value) {
         // A wrapper with padding is required to allow moving an item
         // between two groups: https://jsfiddle.net/4qdmgduo/1/
         const wrapper = document.createElement('div');
@@ -46,7 +46,8 @@ class JsonSortable extends TWElement {
             'hover:border-gray-800',
             'dark:hover:border-white',
         );
-        item.innerText = text;
+        item.innerText = key;
+        item.dataset.value = value;
 
         const iconDelete = document.createElement('i');
         iconDelete.classList.add('fa-solid', 'fa-trash', 'text-violet-800', 'dark:text-white');
@@ -102,16 +103,17 @@ class JsonSortable extends TWElement {
     }
 
     generateJSON() {
-        const structure = this.getPropertyPaths(this.nestedSortable);
-        const json = structure.reduce((json, key) => this.addKey(json, key), {});
+        const structure = this.getProperties(this.nestedSortable);
+        const json = structure.reduce((json, property) => this.addProperty(json, property.path, property.value), {});
         return json;
     }
 
-    getPropertyPaths(sortable, paths = [], path = '') {
+    getProperties(sortable, properties = [], path = '') {
         const children = Array.from(sortable.children);
         children.forEach((c) => {
             const child = c.querySelector('.item');
             let innerTextUntilNewline;
+            const value = child.dataset.value === '[object Object]' ? {} : child.dataset.value;
 
             if (child.innerText.includes('\n')) {
                 innerTextUntilNewline = child.innerText.substring(0, child.innerText.indexOf('\n'));
@@ -119,13 +121,13 @@ class JsonSortable extends TWElement {
                 innerTextUntilNewline = child.innerText;
             }
 
-            paths.push(path + innerTextUntilNewline);
-            this.getPropertyPaths(child, paths, path + innerTextUntilNewline + '.');
+            properties.push({ path: path + innerTextUntilNewline, value: value });
+            this.getProperties(child, properties, path + innerTextUntilNewline + '.');
         });
-        return paths;
+        return properties;
     }
 
-    addKey(json, path) {
+    addProperty(json, path, value) {
         const keys = path.split('.');
         let object = json;
 
@@ -141,7 +143,7 @@ class JsonSortable extends TWElement {
             }
         });
 
-        object[keys.at(-1)] = {};
+        object[keys.at(-1)] = value;
         return json;
     }
 
