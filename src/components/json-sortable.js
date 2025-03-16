@@ -87,7 +87,7 @@ class JsonSortable extends TWElement {
                 fallbackOnBody: true,
                 swapThreshold: 1,
                 onEnd: () => {
-                    const jsonNew = this.getJSObject();
+                    const jsonNew = this.generateJSON();
                     updateJson(this, jsonNew);
                     this.refreshSortable(jsonNew);
                 },
@@ -101,13 +101,13 @@ class JsonSortable extends TWElement {
         this.initSortable();
     }
 
-    getJSObject() {
-        const structure = this.getNewStructure(this.nestedSortable);
+    generateJSON() {
+        const structure = this.getPropertyPaths(this.nestedSortable);
         const json = structure.reduce((json, key) => this.addKey(json, key), {});
         return json;
     }
 
-    getNewStructure(sortable, paths = [], path = '') {
+    getPropertyPaths(sortable, paths = [], path = '') {
         const children = Array.from(sortable.children);
         children.forEach((c) => {
             const child = c.querySelector('.item');
@@ -120,7 +120,7 @@ class JsonSortable extends TWElement {
             }
 
             paths.push(path + innerTextUntilNewline);
-            this.getNewStructure(child, paths, path + innerTextUntilNewline + '.');
+            this.getPropertyPaths(child, paths, path + innerTextUntilNewline + '.');
         });
         return paths;
     }
