@@ -131,7 +131,7 @@ class JsonSortable extends TWElement {
         return this._jsonContextConsumer.value;
     }
 
-    getAllKeyPaths = (object = json, paths = [], path = "") => {
+    getAllKeyPaths = (object = this._jsonContextConsumer.value, paths = [], path = "") => {
         Object.keys(object).forEach(key => {
             paths.push(path + key);
 
