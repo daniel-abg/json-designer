@@ -152,19 +152,6 @@ class JsonSortable extends TWElement {
         return this._jsonContextConsumer.value;
     }
 
-    getAllKeyPaths = (object = this._jsonContextConsumer.value, paths = [], path = '') => {
-        Object.keys(object).forEach((key) => {
-            paths.push(path + key);
-
-            if (object[key] instanceof Array && object[key] !== null) {
-                this.getAllKeyPaths(object[key][0], paths, path + key + '.');
-            } else if (typeof object[key] === 'object' && object[key] !== null) {
-                this.getAllKeyPaths(object[key], paths, path + key + '.');
-            }
-        });
-        return paths;
-    };
-
     firstUpdated() {
         super.firstUpdated();
         this.nestedSortable = this.shadowRoot.getElementById('nested-sortable');
