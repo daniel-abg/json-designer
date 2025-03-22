@@ -64,7 +64,7 @@ class JsonSortable extends TWElement {
             'dark:hover:bg-violet-700',
             'dark:active:bg-violet-500',
         );
-        buttonDelete.style.float = 'right'; // No better solution with flexbox was found yet
+        buttonDelete.style.float = 'right'; // TODO: Find more robust solution without float
         buttonDelete.addEventListener('click', () => {
             const jsonNew = this.deleteKey(path);
             updateJson(this, jsonNew);
