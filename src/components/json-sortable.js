@@ -46,7 +46,7 @@ class JsonSortable extends TWElement {
             'hover:border-gray-800',
             'dark:hover:border-white',
         );
-        item.innerText = key;
+        item.dataset.key = key;
         item.dataset.value = value;
 
         const iconDelete = document.createElement('i');
@@ -112,17 +112,11 @@ class JsonSortable extends TWElement {
         const children = Array.from(sortable.children);
         children.forEach((c) => {
             const child = c.querySelector('.item');
-            let innerTextUntilNewline;
             const value = child.dataset.value === '[object Object]' ? {} : child.dataset.value;
+            const key = child.dataset.key;
 
-            if (child.innerText.includes('\n')) {
-                innerTextUntilNewline = child.innerText.substring(0, child.innerText.indexOf('\n'));
-            } else {
-                innerTextUntilNewline = child.innerText;
-            }
-
-            properties.push({ path: path + innerTextUntilNewline, value: value });
-            this.getProperties(child, properties, path + innerTextUntilNewline + '.');
+            properties.push({ path: path + key, value: value });
+            this.getProperties(child, properties, path + key + '.');
         });
         return properties;
     }
