@@ -48,7 +48,7 @@ class JsonSortable extends TWElement {
         const isObject = typeof value === 'object';
         if (isObject) {
             item.innerText = key;
-            item.classList.add('border');
+            item.classList.add('sortable', 'border');
         } else {
             item.innerHTML = `
                 ${key} <span class="font-bold pl-0.5 text-violet-800 dark:text-gray-950">${value}</span>
@@ -87,7 +87,7 @@ class JsonSortable extends TWElement {
     }
 
     initSortable() {
-        const nestedSortables = this.shadowRoot.querySelectorAll('.item');
+        const nestedSortables = this.shadowRoot.querySelectorAll('.sortable');
         nestedSortables.forEach((sortable) => {
             new Sortable(sortable, {
                 group: 'nested',
