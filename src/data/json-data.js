@@ -4,24 +4,24 @@ export const json = {
         author: {
             firstname: 'Francis Scott',
             lastname: 'Fitzgerald',
-            // "family": [
+            // family: [
             //     {
-            //         "person": "Zelda Sayre",
-            //         "type": "wife",
-            //         "anotherArray": [
+            //         person: 'Zelda Sayre',
+            //         type: 'wife',
+            //         anotherArray: [
             //             {
-            //                 "anotherKey": "anotherValue1"
+            //                 anotherKey: 'anotherValue1',
             //             },
             //             {
-            //                 "anotherKey": "anotherValue2"
-            //             }
-            //         ]
+            //                 anotherKey: 'anotherValue2',
+            //             },
+            //         ],
             //     },
             //     {
-            //         "person": "Frances Scott",
-            //         "type": "daughter",
-            //         "anotherArray": []
-            //     }
+            //         person: 'Frances Scott',
+            //         type: 'daughter',
+            //         anotherArray: [],
+            //     },
             // ],
             born: 1896,
             died: 1940,
