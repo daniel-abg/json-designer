@@ -55,7 +55,7 @@ class JsonSortable extends TWElement {
             `;
         }
         item.dataset.key = key;
-        item.dataset.value = value;
+        item.dataset.value = isObject ? '{}' : value;
 
         const iconDelete = document.createElement('i');
         iconDelete.classList.add('fa-solid', 'fa-trash', 'text-violet-800', 'dark:text-white');
@@ -122,7 +122,7 @@ class JsonSortable extends TWElement {
             .filter((child) => child.tagName === 'DIV')
             .forEach((child) => {
                 const item = child.querySelector('.item');
-                const value = item.dataset.value === '[object Object]' ? {} : item.dataset.value;
+                const value = item.dataset.value === '{}' ? {} : item.dataset.value;
                 const { key } = item.dataset;
 
                 properties.push({ path: path + key, value: value });
