@@ -109,7 +109,7 @@ class JsonSortable extends TWElement {
     }
 
     getProperties(sortable, properties = [], path = '') {
-        const children = Array.from(sortable.children);
+        const children = [...sortable.children];
         children.forEach((c) => {
             const child = c.querySelector('.item');
             const value = child.dataset.value === '[object Object]' ? {} : child.dataset.value;
