@@ -36,7 +36,6 @@ class JsonSortable extends TWElement {
         const item = document.createElement('div');
         item.classList.add(
             'item',
-            '[&:has(.item)]:border',
             'cursor-default',
             'py-2.5',
             'px-3.5',
@@ -46,6 +45,15 @@ class JsonSortable extends TWElement {
             'hover:border-gray-800',
             'dark:hover:border-white',
         );
+        const isObject = typeof value === 'object';
+        if (isObject) {
+            item.innerText = key;
+            item.classList.add('border');
+        } else {
+            item.innerHTML = `
+                ${key} <span class="font-bold pl-0.5 text-violet-800 dark:text-gray-950">${value}</span>
+            `;
+        }
         item.dataset.key = key;
         item.dataset.value = value;
 
@@ -110,14 +118,16 @@ class JsonSortable extends TWElement {
 
     getProperties(sortable, properties = [], path = '') {
         const children = [...sortable.children];
-        children.forEach((child) => {
-            const item = child.querySelector('.item');
-            const value = item.dataset.value === '[object Object]' ? {} : item.dataset.value;
-            const { key } = item.dataset;
+        children
+            .filter((child) => child.tagName === 'DIV')
+            .forEach((child) => {
+                const item = child.querySelector('.item');
+                const value = item.dataset.value === '[object Object]' ? {} : item.dataset.value;
+                const { key } = item.dataset;
 
-            properties.push({ path: path + key, value: value });
-            this.getProperties(item, properties, path + key + '.');
-        });
+                properties.push({ path: path + key, value: value });
+                this.getProperties(item, properties, path + key + '.');
+            });
         return properties;
     }
 
