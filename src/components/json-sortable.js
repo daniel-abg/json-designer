@@ -110,13 +110,13 @@ class JsonSortable extends TWElement {
 
     getProperties(sortable, properties = [], path = '') {
         const children = [...sortable.children];
-        children.forEach((c) => {
-            const child = c.querySelector('.item');
-            const value = child.dataset.value === '[object Object]' ? {} : child.dataset.value;
-            const key = child.dataset.key;
+        children.forEach((child) => {
+            const item = child.querySelector('.item');
+            const value = item.dataset.value === '[object Object]' ? {} : item.dataset.value;
+            const { key } = item.dataset;
 
             properties.push({ path: path + key, value: value });
-            this.getProperties(child, properties, path + key + '.');
+            this.getProperties(item, properties, path + key + '.');
         });
         return properties;
     }
