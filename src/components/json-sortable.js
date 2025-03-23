@@ -17,7 +17,7 @@ class JsonSortable extends TWElement {
 
     generateHTML(object, parentElement, path = '') {
         Object.entries(object).forEach(([key, value]) => {
-            const element = this.insertItem(parentElement, key, path + key);
+            const element = this.insertItem(parentElement, path + key, key, value);
 
             if (!value) return; // because of: typeof null === 'object'
 
@@ -27,7 +27,7 @@ class JsonSortable extends TWElement {
         });
     }
 
-    insertItem(parent, text, path) {
+    insertItem(parent, path, key, value) {
         // A wrapper with padding is required to allow moving an item
         // between two groups: https://jsfiddle.net/4qdmgduo/1/
         const wrapper = document.createElement('div');
@@ -36,7 +36,6 @@ class JsonSortable extends TWElement {
         const item = document.createElement('div');
         item.classList.add(
             'item',
-            '[&:has(.item)]:border',
             'cursor-default',
             'py-2.5',
             'px-3.5',
@@ -46,7 +45,17 @@ class JsonSortable extends TWElement {
             'hover:border-gray-800',
             'dark:hover:border-white',
         );
-        item.innerText = text;
+        const isObject = typeof value === 'object';
+        if (isObject) {
+            item.innerText = key;
+            item.classList.add('sortable', 'border');
+        } else {
+            item.innerHTML = `
+                ${key} <span class="font-bold pl-0.5 text-violet-800 dark:text-gray-300">${value}</span>
+            `;
+        }
+        item.dataset.key = key;
+        item.dataset.value = isObject ? '{}' : value;
 
         const iconDelete = document.createElement('i');
         iconDelete.classList.add('fa-solid', 'fa-trash', 'text-violet-800', 'dark:text-white');
@@ -63,7 +72,7 @@ class JsonSortable extends TWElement {
             'dark:hover:bg-violet-700',
             'dark:active:bg-violet-500',
         );
-        buttonDelete.style.float = 'right'; // No better solution with flexbox was found yet
+        buttonDelete.style.float = 'right'; // TODO: Find more robust solution without float
         buttonDelete.addEventListener('click', () => {
             const jsonNew = this.deleteKey(path);
             updateJson(this, jsonNew);
@@ -78,7 +87,7 @@ class JsonSortable extends TWElement {
     }
 
     initSortable() {
-        const nestedSortables = this.shadowRoot.querySelectorAll('.item');
+        const nestedSortables = this.shadowRoot.querySelectorAll('.sortable');
         nestedSortables.forEach((sortable) => {
             new Sortable(sortable, {
                 group: 'nested',
@@ -87,7 +96,7 @@ class JsonSortable extends TWElement {
                 fallbackOnBody: true,
                 swapThreshold: 1,
                 onEnd: () => {
-                    const jsonNew = this.getJSObject();
+                    const jsonNew = this.generateJSON();
                     updateJson(this, jsonNew);
                     this.refreshSortable(jsonNew);
                 },
@@ -101,31 +110,28 @@ class JsonSortable extends TWElement {
         this.initSortable();
     }
 
-    getJSObject() {
-        const structure = this.getNewStructure(this.nestedSortable);
-        const json = structure.reduce((json, key) => this.addKey(json, key), {});
+    generateJSON() {
+        const structure = this.getProperties(this.nestedSortable);
+        const json = structure.reduce((json, property) => this.addProperty(json, property.path, property.value), {});
         return json;
     }
 
-    getNewStructure(sortable, paths = [], path = '') {
-        const children = Array.from(sortable.children);
-        children.forEach((c) => {
-            const child = c.querySelector('.item');
-            let innerTextUntilNewline;
+    getProperties(sortable, properties = [], path = '') {
+        const children = [...sortable.children];
+        children
+            .filter((child) => child.tagName === 'DIV')
+            .forEach((child) => {
+                const item = child.querySelector('.item');
+                const value = item.dataset.value === '{}' ? {} : item.dataset.value;
+                const { key } = item.dataset;
 
-            if (child.innerText.includes('\n')) {
-                innerTextUntilNewline = child.innerText.substring(0, child.innerText.indexOf('\n'));
-            } else {
-                innerTextUntilNewline = child.innerText;
-            }
-
-            paths.push(path + innerTextUntilNewline);
-            this.getNewStructure(child, paths, path + innerTextUntilNewline + '.');
-        });
-        return paths;
+                properties.push({ path: path + key, value: value });
+                this.getProperties(item, properties, path + key + '.');
+            });
+        return properties;
     }
 
-    addKey(json, path) {
+    addProperty(json, path, value) {
         const keys = path.split('.');
         let object = json;
 
@@ -141,7 +147,7 @@ class JsonSortable extends TWElement {
             }
         });
 
-        object[keys.at(-1)] = {};
+        object[keys.at(-1)] = value;
         return json;
     }
 
@@ -151,19 +157,6 @@ class JsonSortable extends TWElement {
         object && delete object[keys[keys.length - 1]];
         return this._jsonContextConsumer.value;
     }
-
-    getAllKeyPaths = (object = this._jsonContextConsumer.value, paths = [], path = '') => {
-        Object.keys(object).forEach((key) => {
-            paths.push(path + key);
-
-            if (object[key] instanceof Array && object[key] !== null) {
-                this.getAllKeyPaths(object[key][0], paths, path + key + '.');
-            } else if (typeof object[key] === 'object' && object[key] !== null) {
-                this.getAllKeyPaths(object[key], paths, path + key + '.');
-            }
-        });
-        return paths;
-    };
 
     firstUpdated() {
         super.firstUpdated();
