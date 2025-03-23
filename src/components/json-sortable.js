@@ -51,7 +51,7 @@ class JsonSortable extends TWElement {
             item.classList.add('sortable', 'border');
         } else {
             item.innerHTML = `
-                ${key} <span class="font-bold pl-0.5 text-violet-800 dark:text-gray-950">${value}</span>
+                ${key} <span class="font-bold pl-0.5 text-violet-800 dark:text-gray-300">${value}</span>
             `;
         }
         item.dataset.key = key;
