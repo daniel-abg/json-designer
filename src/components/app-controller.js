@@ -66,8 +66,8 @@ class AppController extends TWElement {
 
             <main class="max-w-5xl m-auto px-6 pb-6">
                 <tab-controller>
-                    <span slot="tab1"> <i class="fa-solid fa-code mr-2"></i>JSON</span>
-                    <span slot="tab2"> <i class="fa-solid fa-palette mr-2"></i>Designer</span>
+                    <span slot="tab1"><i class="fa-solid fa-code mr-2"></i>JSON</span>
+                    <span slot="tab2"><i class="fa-solid fa-palette mr-2"></i>Designer</span>
 
                     <span slot="tab1content">
                         <json-textfield></json-textfield>
