@@ -169,7 +169,7 @@ class JsonSortable extends TWElement {
         return html`
             <div
                 id="nested-sortable"
-                class="w-full item mb-6 pt-0.5 pb-2.5 px-3.5 rounded-md border border-gray-500 dark:bg-gray-700"
+                class="w-full sortable item mb-6 pt-0.5 pb-2.5 px-3.5 rounded-md border border-gray-500 dark:bg-gray-700"
             ></div>
         `;
     }
