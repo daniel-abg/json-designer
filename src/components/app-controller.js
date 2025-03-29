@@ -66,14 +66,8 @@ class AppController extends TWElement {
 
             <main class="max-w-5xl m-auto px-6 pb-6">
                 <tab-controller>
-                    <span slot="tab1">
-                        <i class="fa-solid fa-code mr-2"></i>
-                        JSON
-                    </span>
-                    <span slot="tab2">
-                        <i class="fa-solid fa-palette mr-1"></i>
-                        Designer
-                    </span>
+                    <span slot="tab1"> <i class="fa-solid fa-code mr-2"></i>JSON</span>
+                    <span slot="tab2"> <i class="fa-solid fa-palette mr-2"></i>Designer</span>
 
                     <span slot="tab1content">
                         <json-textfield></json-textfield>
@@ -87,8 +81,7 @@ class AppController extends TWElement {
                     class="cursor-pointer text-white bg-violet-800 hover:bg-violet-700 active:bg-violet-500 py-2 px-3 rounded-md"
                     @click=${this.copyJsonToClipboard}
                 >
-                    <i class="fa-regular fa-copy mr-2"></i>
-                    Copy JSON
+                    <i class="fa-regular fa-copy mr-2"></i>Copy JSON
                 </button>
             </main>
         `;
