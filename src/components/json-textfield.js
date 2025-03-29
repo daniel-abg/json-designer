@@ -9,12 +9,20 @@ class JsonTextField extends TWElement {
         subscribe: true,
     });
 
+    static properties = {
+        hasError: { type: Boolean },
+        errorMessage: { type: String },
+    };
+
     insertJson(jsonString) {
         try {
+            this.hasError = false;
+            this.errorMessage = '';
             const jsonParsed = JSON.parse(jsonString);
             updateJson(this, jsonParsed);
         } catch (error) {
-            console.log(error);
+            this.hasError = true;
+            this.errorMessage = error.message;
         }
     }
 
@@ -30,6 +38,7 @@ class JsonTextField extends TWElement {
                 .value=${JSON.stringify(this._jsonContextConsumer.value, null, 2)}
                 @change=${(e) => this.insertJson(e.target.value)}
             ></textarea>
+            ${this.hasError ? html`<div class="mb-6">${this.errorMessage}</div> ` : ''}
         `;
     }
 }
