@@ -1,6 +1,6 @@
 
     import { css } from "lit";
-    export const TWStyles = css` /*! tailwindcss v4.0.15 | MIT License | https://tailwindcss.com */
+    export const TWStyles = css` /*! tailwindcss v4.0.17 | MIT License | https://tailwindcss.com */
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
