@@ -47,7 +47,11 @@ class JsonTextField extends TWElement {
                 .value=${JSON.stringify(this._jsonContextConsumer.value, null, 2)}
                 @change=${(e) => this.insertJson(e.target.value)}
             ></textarea>
-            ${this.hasError ? html`<div class="mb-6">${this.errorMessage}</div> ` : ''}
+            ${this.hasError
+                ? html`<div class="p-3 mb-6 text-red-800 bg-red-200 rounded-md border border-red-800">
+                      <i class="fa-solid fa-triangle-exclamation mr-2"></i>${this.errorMessage}
+                  </div> `
+                : ''}
         `;
     }
 }
