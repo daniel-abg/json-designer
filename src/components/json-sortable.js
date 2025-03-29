@@ -8,6 +8,7 @@ class JsonSortable extends TWElement {
     _jsonContextConsumer = new ContextConsumer(this, {
         context: jsonContext,
         subscribe: true,
+        callback: (newValue) => (this.nestedSortable ? this.refreshSortable(newValue) : ''),
     });
 
     init() {
