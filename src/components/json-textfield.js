@@ -12,6 +12,7 @@ class JsonTextField extends TWElement {
     static properties = {
         hasError: { type: Boolean },
         errorMessage: { type: String },
+        previousJsonValue: { type: String },
     };
 
     insertJson(jsonString) {
@@ -23,6 +24,14 @@ class JsonTextField extends TWElement {
         } catch (error) {
             this.hasError = true;
             this.errorMessage = error.message;
+        }
+    }
+
+    willUpdate() {
+        if (this._jsonContextConsumer.value !== this.previousJsonValue) {
+            this.previousJsonValue = this._jsonContextConsumer.value;
+            this.hasError = false;
+            this.errorMessage = '';
         }
     }
 
