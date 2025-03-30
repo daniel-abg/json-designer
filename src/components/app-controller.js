@@ -10,13 +10,15 @@ import './json-sortable.js';
 class AppController extends TWElement {
     _jsonContextProvider = new ContextProvider(this, {
         context: jsonContext,
-        initialValue: json,
+        initialValue: {
+            json,
+            hasError: false,
+            errorMessage: '',
+        },
     });
 
     static properties = {
         isDarkMode: { type: Boolean },
-        hasError: { type: Boolean },
-        errorMessage: { type: String },
         space: { type: Number },
     };
 
@@ -29,25 +31,32 @@ class AppController extends TWElement {
     connectedCallback() {
         super.connectedCallback();
         this.addEventListener('json-changed', (event) => {
-            this._jsonContextProvider.setValue({ ...event.detail });
+            this._jsonContextProvider.setValue({ ...this._jsonContextProvider.value, ...event.detail });
+            this.requestUpdate();
         });
     }
 
     async pasteJsonFromClipboard() {
         try {
-            this.hasError = false;
-            this.errorMessage = '';
             const jsonString = await navigator.clipboard.readText();
-            const jsonParsed = JSON.parse(jsonString);
-            this._jsonContextProvider.setValue({ ...jsonParsed });
+            const json = JSON.parse(jsonString);
+            this._jsonContextProvider.setValue({
+                json,
+                hasError: false,
+                errorMessage: '',
+            });
         } catch (error) {
-            this.hasError = true;
-            this.errorMessage = error.message;
+            this._jsonContextProvider.setValue({
+                ...this._jsonContextProvider.value,
+                hasError: true,
+                errorMessage: error.message,
+            });
         }
+        this.requestUpdate(); // changing hasError/errorMessage doesn't trigger a rerender
     }
 
     copyJsonToClipboard() {
-        const jsonStringified = JSON.stringify(this._jsonContextProvider.value, null, this.space);
+        const jsonStringified = JSON.stringify(this._jsonContextProvider.value.json, null, this.space);
         navigator.clipboard.writeText(jsonStringified);
     }
 
@@ -92,9 +101,10 @@ class AppController extends TWElement {
                     </span>
                 </tab-controller>
 
-                ${this.hasError
+                ${this._jsonContextProvider.value.hasError
                     ? html`<div class="p-3 mb-6 text-red-800 bg-red-200 rounded-md border border-red-800">
-                          <i class="fa-solid fa-triangle-exclamation mr-2"></i>${this.errorMessage}
+                          <i class="fa-solid fa-triangle-exclamation mr-2"></i>${this._jsonContextProvider.value
+                              .errorMessage}
                       </div> `
                     : ''}
 

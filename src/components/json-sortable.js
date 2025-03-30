@@ -8,11 +8,11 @@ class JsonSortable extends TWElement {
     _jsonContextConsumer = new ContextConsumer(this, {
         context: jsonContext,
         subscribe: true,
-        callback: (newValue) => (this.nestedSortable ? this.refreshSortable(newValue) : ''),
+        callback: (newValue) => (this.nestedSortable ? this.refreshSortable(newValue.json) : ''),
     });
 
     init() {
-        this.generateHTML(this._jsonContextConsumer.value, this.nestedSortable);
+        this.generateHTML(this._jsonContextConsumer.value.json, this.nestedSortable);
         this.initSortable();
     }
 
@@ -154,9 +154,9 @@ class JsonSortable extends TWElement {
 
     deleteKey(path) {
         const keys = path.split('.');
-        const object = keys.slice(0, -1).reduce((obj, key) => obj?.[key], this._jsonContextConsumer.value);
+        const object = keys.slice(0, -1).reduce((obj, key) => obj?.[key], this._jsonContextConsumer.value.json);
         object && delete object[keys[keys.length - 1]];
-        return this._jsonContextConsumer.value;
+        return this._jsonContextConsumer.value.json;
     }
 
     firstUpdated() {

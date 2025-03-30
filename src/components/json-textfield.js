@@ -1,6 +1,6 @@
 import { html } from 'lit';
 import { ContextConsumer } from '@lit/context';
-import { jsonContext, updateJson } from '../context/context.js';
+import { jsonContext, updateJson, reportError } from '../context/context.js';
 import TWElement from './tw-element.js';
 
 class JsonTextField extends TWElement {
@@ -10,28 +10,15 @@ class JsonTextField extends TWElement {
     });
 
     static properties = {
-        hasError: { type: Boolean },
-        errorMessage: { type: String },
         previousJsonValue: { type: String },
     };
 
     insertJson(jsonString) {
         try {
-            this.hasError = false;
-            this.errorMessage = '';
-            const jsonParsed = JSON.parse(jsonString);
-            updateJson(this, jsonParsed);
+            const json = JSON.parse(jsonString);
+            updateJson(this, json);
         } catch (error) {
-            this.hasError = true;
-            this.errorMessage = error.message;
-        }
-    }
-
-    willUpdate() {
-        if (this._jsonContextConsumer.value !== this.previousJsonValue) {
-            this.previousJsonValue = this._jsonContextConsumer.value;
-            this.hasError = false;
-            this.errorMessage = '';
+            reportError(this, error.message);
         }
     }
 
@@ -44,14 +31,9 @@ class JsonTextField extends TWElement {
                     border-gray-500 hover:border-gray-800 focus:outline-hidden 
                     dark:bg-gray-700 dark:text-white dark:hover:border-white
                 "
-                .value=${JSON.stringify(this._jsonContextConsumer.value, null, 2)}
+                .value=${JSON.stringify(this._jsonContextConsumer.value.json, null, 2)}
                 @change=${(e) => this.insertJson(e.target.value)}
             ></textarea>
-            ${this.hasError
-                ? html`<div class="p-3 mb-6 text-red-800 bg-red-200 rounded-md border border-red-800">
-                      <i class="fa-solid fa-triangle-exclamation mr-2"></i>${this.errorMessage}
-                  </div> `
-                : ''}
         `;
     }
 }
