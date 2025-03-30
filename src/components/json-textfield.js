@@ -9,10 +9,6 @@ class JsonTextField extends TWElement {
         subscribe: true,
     });
 
-    static properties = {
-        previousJsonValue: { type: String },
-    };
-
     insertJson(jsonString) {
         try {
             const json = JSON.parse(jsonString);
