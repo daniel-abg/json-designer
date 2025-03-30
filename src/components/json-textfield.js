@@ -1,6 +1,6 @@
 import { html } from 'lit';
 import { ContextConsumer } from '@lit/context';
-import { jsonContext } from '../context/context.js';
+import { jsonContext, updateJson, reportError } from '../context/context.js';
 import TWElement from './tw-element.js';
 
 class JsonTextField extends TWElement {
@@ -8,6 +8,15 @@ class JsonTextField extends TWElement {
         context: jsonContext,
         subscribe: true,
     });
+
+    insertJson(jsonString) {
+        try {
+            const json = JSON.parse(jsonString);
+            updateJson(this, json);
+        } catch (error) {
+            reportError(this, error.message);
+        }
+    }
 
     render() {
         return html`
@@ -18,7 +27,8 @@ class JsonTextField extends TWElement {
                     border-gray-500 hover:border-gray-800 focus:outline-hidden 
                     dark:bg-gray-700 dark:text-white dark:hover:border-white
                 "
-                .value=${JSON.stringify(this._jsonContextConsumer.value, null, 2)}
+                .value=${JSON.stringify(this._jsonContextConsumer.value.json, null, 2)}
+                @change=${(e) => this.insertJson(e.target.value)}
             ></textarea>
         `;
     }
