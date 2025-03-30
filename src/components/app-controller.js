@@ -15,6 +15,8 @@ class AppController extends TWElement {
 
     static properties = {
         isDarkMode: { type: Boolean },
+        hasError: { type: Boolean },
+        errorMessage: { type: String },
         space: { type: Number },
     };
 
@@ -29,6 +31,19 @@ class AppController extends TWElement {
         this.addEventListener('json-changed', (event) => {
             this._jsonContextProvider.setValue({ ...event.detail });
         });
+    }
+
+    async pasteJsonFromClipboard() {
+        try {
+            this.hasError = false;
+            this.errorMessage = '';
+            const jsonString = await navigator.clipboard.readText();
+            const jsonParsed = JSON.parse(jsonString);
+            this._jsonContextProvider.setValue({ ...jsonParsed });
+        } catch (error) {
+            this.hasError = true;
+            this.errorMessage = error.message;
+        }
     }
 
     copyJsonToClipboard() {
@@ -76,6 +91,19 @@ class AppController extends TWElement {
                         <json-sortable></json-sortable>
                     </span>
                 </tab-controller>
+
+                ${this.hasError
+                    ? html`<div class="p-3 mb-6 text-red-800 bg-red-200 rounded-md border border-red-800">
+                          <i class="fa-solid fa-triangle-exclamation mr-2"></i>${this.errorMessage}
+                      </div> `
+                    : ''}
+
+                <button
+                    class="cursor-pointer text-white bg-violet-800 hover:bg-violet-700 active:bg-violet-500 py-2 px-3 rounded-md"
+                    @click=${this.pasteJsonFromClipboard}
+                >
+                    <i class="fa-regular fa-paste mr-2"></i>Paste JSON
+                </button>
 
                 <button
                     class="cursor-pointer text-white bg-violet-800 hover:bg-violet-700 active:bg-violet-500 py-2 px-3 rounded-md"
