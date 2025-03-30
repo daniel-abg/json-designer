@@ -56,8 +56,8 @@ class AppController extends TWElement {
     }
 
     copyJsonToClipboard() {
-        const jsonStringified = JSON.stringify(this._jsonContextProvider.value.json, null, this.space);
-        navigator.clipboard.writeText(jsonStringified);
+        const jsonString = JSON.stringify(this._jsonContextProvider.value.json, null, this.space);
+        navigator.clipboard.writeText(jsonString);
     }
 
     render() {
