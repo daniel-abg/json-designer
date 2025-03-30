@@ -11,7 +11,7 @@ const reportError = (component, errorMessage) => {
 };
 
 const updateContext = (component, value) => {
-    const event = new CustomEvent('json-changed', {
+    const event = new CustomEvent('json-context-changed', {
         bubbles: true,
         composed: true,
         detail: value,

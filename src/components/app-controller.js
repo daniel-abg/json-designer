@@ -30,7 +30,7 @@ class AppController extends TWElement {
 
     connectedCallback() {
         super.connectedCallback();
-        this.addEventListener('json-changed', (event) => {
+        this.addEventListener('json-context-changed', (event) => {
             this._jsonContextProvider.setValue({ ...this._jsonContextProvider.value, ...event.detail });
             this.requestUpdate();
         });
