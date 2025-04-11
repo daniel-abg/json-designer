@@ -2,13 +2,21 @@ import { createContext } from '@lit/context';
 
 const jsonContext = createContext(Symbol('json-context'));
 
-const updateJson = (component, jsonNew) => {
-    const event = new CustomEvent('json-changed', {
+const updateJson = (component, json) => {
+    updateContext(component, { json, hasError: false, errorMessage: '' });
+};
+
+const reportError = (component, errorMessage) => {
+    updateContext(component, { hasError: true, errorMessage });
+};
+
+const updateContext = (component, value) => {
+    const event = new CustomEvent('json-context-changed', {
         bubbles: true,
         composed: true,
-        detail: jsonNew,
+        detail: value,
     });
     component.dispatchEvent(event);
 };
 
-export { jsonContext, updateJson };
+export { jsonContext, updateJson, reportError };
